@@ -1,0 +1,138 @@
+---
+import { Image } from 'astro:assets';
+import image1 from '../assets/image1.webp';
+import image2 from '../assets/image2.webp';
+import image3 from '../assets/image3.webp';
+import image4 from '../assets/image4.webp';
+
+const team = [
+  {
+    name: "Hacene Debbah",
+    role: "Fondateur & Éducateur social HES",
+    image: image1,
+    bio: "Spécialiste de l'accompagnement en milieu ouvert avec plus de 10 ans d'expertise."
+  },
+  {
+    name: "Sonia",
+    role: "Éducatrice sociale HES",
+    image: image2,
+    bio: "Experte en médiation familiale et insertion des jeunes adultes."
+  },
+  {
+    name: "Marc",
+    role: "Éducateur social HES",
+    image: image3,
+    bio: "Accompagnement transversal et gestion de crise."
+  },
+  {
+    name: "Julie",
+    role: "Éducatrice sociale HES",
+    image: image4,
+    bio: "Spécialisée dans le suivi administratif et le projet de suite."
+  }
+];
+---
+
+<section id="team" class="team bg-white">
+  <div class="container">
+    <div class="team__header reveal">
+      <div class="label">L'équipe</div>
+      <h2>Des professionnels de terrain<span>.</span></h2>
+      <p class="text-large mt-24 text-muted" style="max-width: 700px;">
+        Tous nos collaborateurs sont diplômés HES et possèdent une connaissance approfondie du réseau socio-éducatif genevois.
+      </p>
+    </div>
+
+    <div class="team__grid mt-80">
+      {team.map((member) => (
+        <div class="member-card reveal">
+          <div class="member-card__img-wrapper">
+            <Image src={member.image} alt={member.name} class="img-cover" width={400} height={500} loading="lazy" />
+            <div class="member-card__overlay">
+              <p>{member.bio}</p>
+            </div>
+          </div>
+          <div class="member-card__info mt-24">
+            <h3>{member.name}</h3>
+            <p class="text-accent">{member.role}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .team {
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .member-card {
+      &__img-wrapper {
+        position: relative;
+        aspect-ratio: 4/5;
+        border-radius: 32px;
+        overflow: hidden;
+        background: var(--color-surface);
+
+        img {
+          transition: transform 0.6s var(--ease-out);
+        }
+      }
+
+      &__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(17, 17, 17, 0.8);
+        padding: 32px;
+        display: flex;
+        align-items: flex-end;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        
+        p {
+          color: white;
+          font-size: 15px;
+          transform: translateY(20px);
+          transition: transform 0.4s var(--ease-out);
+        }
+      }
+
+      &:hover {
+        .member-card__img-wrapper img {
+          transform: scale(1.1);
+        }
+        .member-card__overlay {
+          opacity: 1;
+          p {
+            transform: translateY(0);
+          }
+        }
+      }
+
+      &__info {
+        h3 {
+          font-size: 24px;
+          margin-bottom: 4px;
+        }
+        .text-accent {
+          font-size: 14px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: #B28B00; // Slightly darker accent for readability on white
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,168 @@
+---
+import Icon from './Icon.astro';
+---
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact__header reveal">
+      <div class="label">Contact</div>
+      <h2>Discutons de votre projet<span class="text-accent">.</span></h2>
+      <p class="text-large mt-24 text-muted">
+        Notre équipe est à votre disposition pour toute demande de renseignement ou de mandat.
+      </p>
+    </div>
+
+    <div class="contact__grid mt-80">
+      <div class="info-card reveal">
+        <div class="info-card__icon">
+          <Icon name="map-pin" size="32" />
+        </div>
+        <h3>Adresse</h3>
+        <p>Chemin de la Vendée 29<br/>1213 Petit Lancy</p>
+        <a href="https://goo.gl/maps/..." target="_blank" class="link-arrow">Voir sur la carte →</a>
+      </div>
+
+      <div class="info-card reveal" style="transition-delay: 0.1s;">
+        <div class="info-card__icon">
+          <Icon name="mail" size="32" />
+        </div>
+        <h3>Email</h3>
+        <p>Pour toute question générale</p>
+        <a href="mailto:info@jeunesseandco.ch" class="link-large">info@jeunesseandco.ch</a>
+      </div>
+
+      <div class="info-card reveal" style="transition-delay: 0.2s;">
+        <div class="info-card__icon">
+          <Icon name="phone" size="32" />
+        </div>
+        <h3>Téléphone</h3>
+        <p>Du Lundi au Vendredi</p>
+        <a href="tel:+41227311947" class="link-large">+41 (0)22 731 19 47</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .contact {
+    background-color: var(--color-bg);
+    padding: 140px 0;
+
+    &__header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+
+      .label {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-text-muted);
+        margin-bottom: 24px;
+        padding: 6px 16px;
+        border: 1px solid var(--color-border);
+        border-radius: 100px;
+      }
+
+      h2 {
+        font-size: clamp(32px, 5vw, 56px);
+        margin-bottom: 24px;
+        
+        .text-accent {
+          color: var(--color-accent);
+        }
+      }
+    }
+
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .info-card {
+      background: var(--color-white);
+      padding: 48px 32px;
+      border-radius: 24px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid transparent;
+      box-shadow: var(--shadow-sm);
+
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--color-border);
+      }
+
+      &__icon {
+        margin-bottom: 24px;
+        background: var(--color-surface);
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        color: var(--color-primary);
+        transition: all 0.3s ease;
+      }
+      
+      &:hover &__icon {
+        background: var(--color-accent);
+        color: var(--color-text);
+      }
+
+      h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        font-family: var(--font-headline);
+      }
+
+      p {
+        font-size: 15px;
+        color: var(--color-text-muted);
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+
+      .link-large {
+        display: block;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--color-primary);
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--color-accent);
+        }
+      }
+
+      .link-arrow {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--color-primary);
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 2px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          border-color: var(--color-primary);
+        }
+      }
+    }
+  }
+</style>

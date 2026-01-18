@@ -1,0 +1,81 @@
+---
+import '@fontsource/outfit/400.css';
+import '@fontsource/outfit/500.css';
+import '@fontsource/outfit/700.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '../styles/global.scss';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileNav from '../components/MobileNav.astro';
+import { getImage } from 'astro:assets';
+import image6 from '../assets/image6.webp';
+
+interface Props {
+	title: string;
+	description?: string;
+	preloadHeroImage?: boolean;
+}
+
+const { title, description = "Jeunesse & Co - L'accompagnement éducatif sur mesure", preloadHeroImage = false } = Astro.props;
+
+const heroImage = preloadHeroImage ? await getImage({ src: image6, width: 600, height: 450, format: 'webp' }) : null;
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/assets/Favicon-32.png" />
+		<meta name="generator" content={Astro.generator} />
+		{heroImage && <link rel="preload" as="image" href={heroImage.src} type="image/webp" fetchpriority="high" />}
+		<title>{title}</title>
+	</head>
+	<body>
+		<Header />
+		<MobileNav />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+		
+		<script>
+			// Defer scroll-triggered animations until after page load
+			const initRevealAnimations = () => {
+				import("gsap").then(({ gsap }) => {
+					import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+						gsap.registerPlugin(ScrollTrigger);
+						gsap.set('.reveal', { opacity: 0, y: 30 });
+						
+						const reveals = document.querySelectorAll('.reveal');
+						reveals.forEach((el) => {
+							gsap.to(el, {
+								scrollTrigger: {
+									trigger: el,
+									start: "top 90%",
+									toggleActions: "play none none none"
+								},
+								y: 0,
+								opacity: 1,
+								duration: 1,
+								ease: "power3.out",
+								overwrite: true
+							});
+						});
+					});
+				});
+			};
+
+			if (document.readyState === 'complete') {
+				requestIdleCallback ? requestIdleCallback(initRevealAnimations) : setTimeout(initRevealAnimations, 1);
+			} else {
+				window.addEventListener('load', () => {
+					requestIdleCallback ? requestIdleCallback(initRevealAnimations) : setTimeout(initRevealAnimations, 1);
+				});
+			}
+		</script>
+	</body>
+</html>

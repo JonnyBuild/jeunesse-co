@@ -1,0 +1,157 @@
+---
+---
+<header class="header" id="header">
+  <div class="header__inner container">
+    <a href="/" class="header__logo">
+      <img src="/assets/Logo1.svg" alt="Jeunesse & Co" class="header__logo-img" width="140" height="32" />
+    </a>
+    
+    <nav class="header__nav">
+      <a href="/#about" class="header__link">Notre vision</a>
+      <a href="/#team" class="header__link">L'équipe</a>
+      <a href="/#method" class="header__link">Méthode</a>
+      <a href="/impulsion" class="header__link header__link--impulsion">Impulsion</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="/#contact" class="btn btn--header hide-mobile">Contact</a>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style lang="scss">
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 32px 0;
+    transition: all 0.5s var(--ease-out);
+    background: transparent;
+
+    &--scrolled {
+      background: rgba(253, 251, 247, 0.85);
+      backdrop-filter: blur(20px);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+      .header__nav {
+        background: rgba(0, 0, 0, 0.03);
+      }
+    }
+
+    &__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__logo {
+      &-img {
+        height: 48px;
+        width: auto;
+        
+        @media (max-width: 768px) {
+          height: 36px;
+        }
+      }
+    }
+
+    &__nav {
+      display: flex;
+      gap: 8px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 100px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+
+      @media (max-width: 1024px) {
+        display: none;
+      }
+    }
+
+    &__link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text);
+      transition: all 0.3s var(--ease-out);
+      position: relative;
+      padding: 10px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      
+      &:hover {
+        background: var(--color-white);
+        color: var(--color-primary);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+      
+      &--impulsion {
+        color: #B28B00;
+        &:hover {
+          background: #FFF9E6;
+        }
+      }
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .btn--header {
+      padding: 12px 24px;
+      font-size: 13px;
+      border-radius: 100px;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+
+      span {
+        display: block;
+        width: 28px;
+        height: 2px;
+        background: var(--color-primary);
+        transition: all 0.3s ease;
+      }
+
+      @media (max-width: 1024px) {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hide-mobile {
+        display: none;
+      }
+    }
+  }
+</style>
+
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header?.classList.add('header--scrolled');
+    } else {
+      header?.classList.remove('header--scrolled');
+    }
+  });
+</script>

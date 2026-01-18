@@ -1,0 +1,98 @@
+---
+const steps = [
+  {
+    num: "01",
+    title: "Accueil",
+    intro: "Une première étape cruciale pour définir les bases de la collaboration.",
+    content: "Une rencontre a lieu entre le jeune et/ou sa famille avec notre équipe. Ce moment est primordial puisque l’éducateur référent expliquera les modalités de l’accompagnement : fréquences des rencontres, type de suivi, cadre à respecter. Nous sommes mandatés par des acteurs publics (Tmin, SPMI, HUG) ou privés."
+  },
+  {
+    num: "02",
+    title: "Mise en place du suivi",
+    intro: "Un accompagnement transversal structuré autour de 5 axes fondamentaux.",
+    content: "Nous intervenons sur les dimensions Biologique, Psychologique, Sociale, Administrative et Professionnelle. Notre approche mobile nous permet d'aller là où les institutions classiques ne vont pas, en adaptant l'intensité du suivi aux besoins réels."
+  },
+  {
+    num: "03",
+    title: "Projet de suite",
+    intro: "Anticiper l'avenir et assurer une transition vers l'autonomie.",
+    content: "Nous cherchons avec le jeune un projet de suite adapté : logement, ouverture de dossier AI, Point Jeune, ou Hospice Général. L'objectif est de consolider les acquis et de garantir une intégration sociale durable."
+  }
+];
+---
+
+<section id="method" class="method bg-surface">
+  <div class="container">
+    <div class="method__header reveal">
+      <div class="label">02. Méthode de travail</div>
+      <h2>Un parcours en trois temps<span>.</span></h2>
+    </div>
+
+    <div class="method__steps mt-80">
+      {steps.map((step, index) => (
+        <div class="method-step reveal">
+          <div class="method-step__num">
+            <span>{step.num}</span>
+          </div>
+          <div class="method-step__content">
+            <h3>{step.title}</h3>
+            <p class="text-large">{step.intro}</p>
+            <p class="text-muted">{step.content}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .method {
+    &__steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+    }
+
+    .method-step {
+      background: var(--color-white);
+      padding: clamp(32px, 5vw, 60px) clamp(24px, 4vw, 40px);
+      border-radius: 32px;
+      height: auto;
+      border: 1px solid var(--color-border);
+      transition: transform 0.4s var(--ease-out);
+
+      &:hover {
+        transform: translateY(-10px);
+        border-color: var(--color-accent);
+      }
+
+      &__num {
+        width: 60px;
+        height: 60px;
+        background: var(--color-accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: clamp(24px, 4vw, 40px);
+        
+        span {
+          font-family: var(--font-headline);
+          font-weight: 700;
+          font-size: 20px;
+        }
+      }
+
+      &__content {
+        h3 {
+          font-size: clamp(24px, 3vw, 28px);
+        }
+      }
+    }
+  }
+</style>

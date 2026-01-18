@@ -1,0 +1,259 @@
+---
+import Icon from './Icon.astro';
+import { Image } from 'astro:assets';
+import diagramme from '../assets/diagramme.png';
+
+const pillars = [
+  { title: "Finalité sociale", iconName: "heart", desc: "La poursuite d'objectifs sociaux prime sur la recherche de profit." },
+  { title: "Profit limité", iconName: "target", desc: "Le profit est un moyen de pérenniser l'activité, pas une fin en soi." },
+  { title: "Conditions décentes", iconName: "shield", desc: "Création d'emplois durables avec des conditions salariales respectueuses." },
+  { title: "Gouvernance", iconName: "vote", desc: "Système de décision participatif impliquant les collaborateurs." }
+];
+---
+
+<section class="ess bg-primary">
+  <div class="container">
+    <div class="grid">
+      <div class="col-6 reveal">
+        <div class="label" style="color: var(--color-accent);">Notre Structure</div>
+        <h2 style="color: var(--color-white);">Une Entreprise Sociale et Solidaire<span>.</span></h2>
+        <p class="mt-40 text-large" style="color: rgba(255,255,255,0.8);">
+          Nous avons choisi la forme juridique de la SARL pour sa réactivité, mais nous fonctionnons selon les principes de l'économie sociale et solidaire (ESS).
+        </p>
+        <a href="#contact" class="btn mt-60" style="color: white; border-color: rgba(255,255,255,0.3);">En savoir plus</a>
+      </div>
+      
+      <div class="col-6 reveal">
+        <div class="ess__grid">
+          {pillars.map(pillar => (
+            <div class="pillar-card">
+              <div class="pillar-card__icon">
+                {/* @ts-ignore */}
+                <Icon name={pillar.iconName} size="32" />
+              </div>
+              <h3 class="mt-24">{pillar.title}</h3>
+              <p class="mt-16" style="color: rgba(255,255,255,0.6);">{pillar.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="ess__infographic mt-100 reveal">
+      <div class="infographic-box">
+        <div class="infographic-img lightbox-trigger">
+          <Image src={diagramme} alt="Diagramme ESS" class="img-cover" width={600} height={400} loading="lazy" />
+          <div class="zoom-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </div>
+        <div class="infographic-text">
+          <p class="serif">Environ 10% des entreprises en Suisse romande ont adopté ce modèle éthique.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox__overlay"></div>
+    <div class="lightbox__content">
+      <img id="lightbox-img" src="" alt="Full size diagram" />
+      <button class="lightbox__close" aria-label="Fermer">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .ess {
+    // ... previous styles ...
+    
+    .infographic-img {
+      position: relative;
+      cursor: zoom-in;
+      
+      .zoom-icon {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        background: var(--color-accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-md);
+      }
+      
+      &:hover .zoom-icon {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    // Lightbox Styles
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+
+      &.is-active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      &__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(17, 17, 17, 0.95);
+        backdrop-filter: blur(10px);
+      }
+
+      &__content {
+        position: relative;
+        z-index: 2;
+        max-width: 90vw;
+        max-height: 90vh;
+        transform: scale(0.9);
+        transition: transform 0.5s var(--ease-out);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          border-radius: 12px;
+          box-shadow: var(--shadow-lg);
+        }
+      }
+
+      &.is-active &__content {
+        transform: scale(1);
+      }
+
+      &__close {
+        position: absolute;
+        top: -60px;
+        right: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+      }
+    }
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+
+      @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pillar-card {
+      padding: clamp(24px, 4vw, 40px);
+      background: rgba(255,255,255,0.03);
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.4s var(--ease-out);
+
+      &:hover {
+        background: rgba(255,255,255,0.08);
+        border-color: var(--color-accent);
+        transform: translateY(-5px);
+      }
+
+      &__icon {
+        color: var(--color-accent);
+      }
+
+      h3 {
+        color: var(--color-white);
+        font-size: clamp(18px, 2vw, 20px);
+      }
+      p {
+        font-size: 15px;
+      }
+    }
+
+    &__infographic {
+      .infographic-box {
+        background: var(--color-white);
+        padding: clamp(32px, 6vw, 60px);
+        border-radius: clamp(32px, 5vw, 48px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 8vw, 80px);
+        align-items: center;
+        color: var(--color-primary);
+
+        @media (max-width: 1024px) {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .infographic-img {
+        border-radius: 24px;
+        overflow: hidden;
+      }
+
+      .infographic-text {
+        p {
+          font-size: clamp(24px, 3vw, 32px);
+          line-height: 1.3;
+        }
+      }
+    }
+
+    .serif {
+      font-family: var(--font-headline);
+      font-style: italic;
+    }
+    
+    .mt-100 { margin-top: 100px; }
+  }
+</style>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const trigger = document.querySelector('.lightbox-trigger');
+  const closeBtn = document.querySelector('.lightbox__close');
+  const overlay = document.querySelector('.lightbox__overlay');
+
+  if (lightbox && trigger && lightboxImg) {
+    trigger.addEventListener('click', () => {
+      const img = trigger.querySelector('img');
+      if (img) {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('is-active');
+        document.body.style.overflow = 'hidden'; // Prevent scroll
+      }
+    });
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-active');
+      document.body.style.overflow = '';
+    };
+
+    closeBtn?.addEventListener('click', closeLightbox);
+    overlay?.addEventListener('click', closeLightbox);
+    
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }
+</script>

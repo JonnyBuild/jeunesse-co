@@ -1,0 +1,256 @@
+---
+import { Image } from 'astro:assets';
+import image1 from '../assets/image1.webp';
+import image3 from '../assets/image3.webp';
+---
+<section id="about" class="about">
+  <div class="container">
+    <div class="grid">
+      <div class="col-6 reveal">
+        <div class="label">01. Qui sommes-nous ?</div>
+        <h2>Une équipe dévouée au changement social<span>.</span></h2>
+      </div>
+      <div class="col-6 reveal">
+        <p class="text-large">
+          Nous sommes des spécialistes de l'accompagnement social, diplômés de la Haute Ecole de Travail Social de Genève.
+        </p>
+        <p class="text-muted">
+          Chaque membre de notre équipe apporte une expertise forgée dans les institutions genevoises les plus exigeantes : foyers éducatifs, maisons de quartier, travail social hors murs et centres de réhabilitation.
+        </p>
+      </div>
+    </div>
+
+    <div class="about__grid mt-80">
+      <div class="about__card about__card--main reveal">
+        <Image src={image1} alt="L'équipe au travail" class="img-cover" width={800} height={500} loading="lazy" />
+        <div class="about__card-content">
+          <blockquote class="serif">
+            "Nous remettons le jeune au centre de son projet éducatif pour sortir des dogmes institutionnels traditionnels."
+          </blockquote>
+        </div>
+      </div>
+      
+      <div class="about__card about__card--text bg-surface reveal">
+        <h3 class="mb-16">Notre Collaboration</h3>
+        <p class="text-muted">Nous travaillons en étroite synergie avec le Tribunal des Mineurs, le SPMI, le DIP et l'Hospice Général pour garantir une continuité de soin et de suivi exemplaire.</p>
+      </div>
+
+      <div class="about__card about__card--img reveal">
+        <Image src={image3} alt="Interaction" class="img-cover" width={400} height={400} loading="lazy" />
+      </div>
+
+      <div class="about__card about__card--text bg-accent reveal">
+        <h3 class="mb-16">Réactivité 24/7</h3>
+        <p>Notre connaissance fine du tissu social genevois nous permet de réajuster nos pratiques en temps réel selon l'évolution de chaque situation.</p>
+      </div>
+    </div>
+
+    <div class="partners reveal">
+      <p class="partners__label">Nos partenaires institutionnels</p>
+      <div class="partners__list">
+        <div class="partners__item">
+          <span class="partners__name">Tribunal des Mineurs</span>
+          <span class="partners__badge">Canton de Genève</span>
+        </div>
+        <div class="partners__item">
+          <span class="partners__name">SPMi</span>
+          <span class="partners__badge">Protection des mineurs</span>
+        </div>
+        <div class="partners__item">
+          <span class="partners__name">DIP</span>
+          <span class="partners__badge">Instruction publique</span>
+        </div>
+        <div class="partners__item">
+          <span class="partners__name">Hospice Général</span>
+          <span class="partners__badge">Action sociale</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .about {
+    background-color: var(--color-white);
+
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 400px);
+      gap: 24px;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-auto-rows: minmax(350px, auto);
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    &__card {
+      position: relative;
+      border-radius: 32px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(24px, 4vw, 40px);
+      min-height: 350px;
+
+      &--main {
+        grid-column: span 2;
+        justify-content: center;
+        padding: clamp(32px, 6vw, 60px);
+
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          filter: brightness(0.6);
+          transition: transform 0.6s var(--ease-out);
+        }
+
+        &:hover img {
+          transform: scale(1.05);
+        }
+
+        .about__card-content {
+          position: relative;
+          z-index: 2;
+          color: var(--color-white);
+
+          blockquote {
+            font-size: clamp(20px, 3vw, 36px);
+            line-height: 1.3;
+          }
+        }
+
+        @media (max-width: 1024px) {
+          grid-column: span 2;
+          min-height: 400px;
+        }
+        @media (max-width: 768px) {
+          grid-column: span 1;
+          min-height: 350px;
+        }
+      }
+
+      &--text {
+        justify-content: center;
+        background: var(--color-surface);
+        height: 100%;
+        
+        &.bg-accent {
+          background: var(--color-accent);
+          h3, p { color: var(--color-primary); }
+        }
+      }
+
+      &--img {
+        padding: 0;
+        height: 100%;
+      }
+
+      @media (max-width: 1024px) {
+        min-height: 300px;
+      }
+    }
+
+    .serif {
+      font-family: var(--font-headline);
+      font-style: italic;
+    }
+  }
+
+  .partners {
+    margin-top: 60px;
+    padding: 40px;
+    background: var(--color-surface);
+    border-radius: 24px;
+
+    @media (max-width: 768px) {
+      margin-top: 40px;
+      padding: 24px;
+    }
+
+    &__label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    &__list {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+
+      @media (max-width: 768px) {
+        gap: 16px;
+      }
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 20px 28px;
+      background: var(--color-white);
+      border-radius: 16px;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      }
+
+      @media (max-width: 768px) {
+        padding: 16px 20px;
+        flex: 1 1 calc(50% - 16px);
+        min-width: 140px;
+      }
+
+      @media (max-width: 480px) {
+        flex: 1 1 100%;
+      }
+    }
+
+    &__name {
+      font-family: var(--font-headline);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-primary);
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
+    }
+
+    &__badge {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--color-text-muted);
+      padding: 4px 10px;
+      background: var(--color-surface);
+      border-radius: 100px;
+
+      @media (max-width: 768px) {
+        font-size: 10px;
+      }
+    }
+  }
+</style>

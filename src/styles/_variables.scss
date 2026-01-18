@@ -1,0 +1,36 @@
+// COLOR PALETTE
+$color-primary: #111111;
+$color-accent: #FFDF5C;
+$color-bg: #FDFBF7;
+$color-surface: #F5F1EB;
+$color-text: #1A1A1A;
+$color-text-muted: #6B6B6B;
+$color-border: #E5E0D8;
+$color-white: #FFFFFF;
+
+// TYPOGRAPHY
+$font-headline: 'Outfit', sans-serif;
+$font-body: 'Inter', sans-serif;
+
+// SPACING
+$grid-gap: 32px;
+$grid-margin: 80px;
+$section-spacing: 160px;
+
+// EASING
+$ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+// BREAKPOINTS
+$bp-desktop: 1440px;
+$bp-laptop: 1024px;
+$bp-tablet: 768px;
+$bp-mobile: 480px;
+
+// NEW UTILITIES
+$border-radius-sm: 4px;
+$border-radius-md: 12px;
+$border-radius-lg: 24px;
+$shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+$shadow-md: 0 10px 30px rgba(0,0,0,0.08);
+$shadow-lg: 0 20px 60px rgba(0,0,0,0.12);

@@ -1,0 +1,647 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const data = {
+  lundi: [
+    { t: "08:30 — 10:05", a: "Sport", d: "Physique", icon: "dumbbell" },
+    { t: "10:30 — 12:05", a: "Projet d'Entraide", d: "Social", icon: "users" },
+    { t: "12:05 — 13:30", a: "Repas Nutrition", d: "Santé", icon: "utensils" },
+    { t: "13:30 — 16:55", a: "Expression Orale", d: "Éducatif", icon: "mic" },
+    { t: "16:55 — 17:30", a: "Accompagnement Individuel", d: "Social", icon: "heart" }
+  ],
+  mardi: [
+    { t: "08:30 — 10:05", a: "Sport", d: "Physique", icon: "dumbbell" },
+    { t: "10:30 — 12:05", a: "Auto-Portrait", d: "Créatif", icon: "palette" },
+    { t: "12:05 — 13:30", a: "Repas Nutrition", d: "Santé", icon: "utensils" },
+    { t: "13:30 — 16:55", a: "Renforcement Scolaire", d: "Éducatif", icon: "graduation-cap" },
+    { t: "16:55 — 17:30", a: "Accompagnement Individuel", d: "Social", icon: "heart" }
+  ],
+  mercredi: [
+    { t: "08:30 — 12:05", a: "Groupe de Parole", d: "Social", icon: "users" },
+    { t: "12:05 — 13:30", a: "Repas Nutrition", d: "Santé", icon: "utensils" },
+    { t: "13:30 — 15:05", a: "Sport", d: "Physique", icon: "dumbbell" },
+    { t: "15:20 — 16:55", a: "Projet d'Entraide", d: "Social", icon: "users" },
+    { t: "16:55 — 17:30", a: "Accompagnement Individuel", d: "Social", icon: "heart" }
+  ],
+  jeudi: [
+    { t: "08:30 — 12:05", a: "Renforcement Scolaire", d: "Éducatif", icon: "graduation-cap" },
+    { t: "12:05 — 13:30", a: "Repas Nutrition", d: "Santé", icon: "utensils" },
+    { t: "13:30 — 15:05", a: "Auto-Portrait", d: "Créatif", icon: "palette" },
+    { t: "15:20 — 16:55", a: "Sport", d: "Physique", icon: "dumbbell" },
+    { t: "16:55 — 17:30", a: "Accompagnement Individuel", d: "Social", icon: "heart" }
+  ],
+  vendredi: [
+    { t: "08:30 — 12:05", a: "Projet Multimédia", d: "Créatif", icon: "video" },
+    { t: "12:05 — 13:30", a: "Repas Nutrition", d: "Santé", icon: "utensils" },
+    { t: "13:30 — 15:05", a: "Sport", d: "Physique", icon: "dumbbell" },
+    { t: "15:20 — 16:55", a: "Permis de Conduire", d: "Éducatif", icon: "car" },
+    { t: "16:55 — 17:30", a: "Accompagnement Individuel", d: "Social", icon: "heart" }
+  ]
+};
+---
+
+<Layout title="Programme Impulsion | Jeunesse & Co">
+  <section class="impulsion-header">
+    <div class="container">
+      <div class="header-content reveal">
+        <span class="badge">Accompagnement Intensif</span>
+        <h1>Programme <span class="highlight">Impulsion</span></h1>
+        <p class="subtitle">Un emploi du temps structuré pour favoriser le raccrochage scolaire, le bien-être physique et la réinsertion sociale.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="planning-section">
+    <div class="container">
+      <div class="planning-wrapper">
+        <nav class="day-nav reveal">
+          <div class="nav-title">Semaine Type</div>
+          {['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi'].map((day, i) => (
+            <button class={`day-link ${day === 'lundi' ? 'active' : ''}`} data-day={day}>
+              <span class="day-num">0{i + 1}</span>
+              <span class="day-name">{day.charAt(0).toUpperCase() + day.slice(1)}</span>
+              <span class="indicator"></span>
+            </button>
+          ))}
+          
+          <div class="info-card mt-60 hide-mobile">
+            <div class="info-icon">
+              <Icon name="heart" size="24" />
+            </div>
+            <p>Encadrement continu par nos éducateurs spécialisés HES.</p>
+          </div>
+        </nav>
+
+        <div class="schedule-container reveal">
+          <div class="schedule-header">
+            <h2 id="current-day-title">Lundi</h2>
+            <div class="schedule-legend">
+              <span class="legend-item"><span class="dot physics"></span>Physique</span>
+              <span class="legend-item"><span class="dot social"></span>Social</span>
+              <span class="legend-item"><span class="dot edu"></span>Éducatif</span>
+              <span class="legend-item"><span class="dot sante"></span>Santé</span>
+              <span class="legend-item"><span class="dot creatif"></span>Créatif</span>
+            </div>
+          </div>
+          
+          <div id="planning-list" class="planning-list">
+            <!-- JS Injection -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style lang="scss">
+  .impulsion-header {
+    padding-top: 180px;
+    padding-bottom: 80px;
+    background: linear-gradient(to bottom, var(--color-bg) 0%, #fff 100%);
+    text-align: center;
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
+      background: var(--color-white);
+    }
+    h1 {
+      font-size: clamp(42px, 7vw, 88px);
+      margin-bottom: 24px;
+      letter-spacing: -0.03em;
+      .highlight {
+        font-family: var(--font-headline);
+        font-style: italic;
+        color: var(--color-primary);
+        position: relative;
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 10px;
+          left: -5%;
+          width: 110%;
+          height: 0.3em;
+          background: var(--color-accent);
+          opacity: 0.3;
+          z-index: -1;
+          transform: rotate(-2deg);
+        }
+      }
+    }
+    .subtitle {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 20px;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+  }
+
+  .planning-section {
+    padding-bottom: 120px;
+    background: #fff;
+  }
+
+  .planning-wrapper {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 80px;
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  .day-nav {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+    z-index: 10;
+    background: rgba(253, 251, 247, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(229, 224, 216, 0.5);
+    padding: 12px;
+    border-radius: 20px;
+
+    .nav-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
+      padding-left: 16px;
+    }
+    .day-link {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      text-align: left;
+      margin-bottom: 8px;
+      position: relative;
+      overflow: hidden;
+      .day-num {
+        font-family: var(--font-headline);
+        font-size: 14px;
+        color: var(--color-text-muted);
+        opacity: 0.5;
+      }
+      .day-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--color-text);
+      }
+      .indicator {
+        position: absolute;
+        right: 20px;
+        width: 6px;
+        height: 6px;
+        background: var(--color-primary);
+        border-radius: 50%;
+        opacity: 0;
+        transform: scale(0);
+        transition: all 0.3s ease;
+      }
+      &:hover {
+        background: var(--color-surface);
+      }
+      &.active {
+        background: var(--color-primary);
+        .day-num, .day-name { color: var(--color-white); opacity: 1; }
+        .indicator { background: var(--color-accent); opacity: 1; transform: scale(1); }
+      }
+    }
+    @media (max-width: 1024px) {
+      position: sticky;
+      top: 70px;
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      padding: 12px 24px;
+      margin: 0 -24px 24px -24px;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      background: rgba(253, 251, 247, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(229, 224, 216, 0.5);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      &::-webkit-scrollbar { display: none; }
+      .nav-title { display: none; }
+      .day-link { 
+        width: 160px;
+        min-width: 160px;
+        flex-shrink: 0;
+        margin-right: 12px;
+        margin-bottom: 0;
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+
+  .info-card {
+    background: var(--color-surface);
+    padding: 24px;
+    border-radius: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    .icon { color: var(--color-primary); }
+    p { font-size: 14px; margin: 0; line-height: 1.5; color: var(--color-text); }
+  }
+
+  .schedule-container {
+    background: #FDFBF7; 
+    padding: 60px;
+    border-radius: 40px;
+    min-height: 600px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    @media (max-width: 768px) {
+      padding: 32px 20px;
+      border-radius: 24px;
+    }
+  }
+
+  .schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 32px;
+    h2 {
+      font-size: 48px;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+
+      h2 {
+        font-size: clamp(28px, 10vw, 36px);
+      }
+    }
+  }
+
+  .schedule-legend {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        &.physics { background: #3A8E80; }
+        &.social { background: #B38029; }
+        &.edu { background: #5C7CFA; }
+        &.sante { background: #32ade6; }
+        &.creatif { background: #ff2d55; }
+      }
+    }
+  }
+
+  .planning-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hide-mobile {
+    @media (max-width: 1024px) { display: none; }
+  }
+</style>
+
+<style is:global>
+  .activity-card {
+    display: grid;
+    grid-template-columns: 6px 1fr;
+    align-items: stretch;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 0;
+    border: none;
+    box-shadow: 
+      0 0 0 1px rgba(0, 0, 0, 0.04),
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      0 6px 16px rgba(0, 0, 0, 0.04);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .activity-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+      0 0 0 1px rgba(0, 0, 0, 0.06),
+      0 4px 12px rgba(0, 0, 0, 0.08),
+      0 16px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .activity-card .accent-bar {
+    width: 6px;
+    min-height: 100%;
+    background: #e5e5ea;
+  }
+  .activity-card .accent-bar.Physique { background: linear-gradient(180deg, #34c759 0%, #30a14e 100%); }
+  .activity-card .accent-bar.Social { background: linear-gradient(180deg, #ff9500 0%, #c77700 100%); }
+  .activity-card .accent-bar.Santé { background: linear-gradient(180deg, #32ade6 0%, #0a84ff 100%); }
+  .activity-card .accent-bar.Éducatif { background: linear-gradient(180deg, #5856d6 0%, #3634a3 100%); }
+  .activity-card .accent-bar.Créatif { background: linear-gradient(180deg, #ff2d55 0%, #d30f45 100%); }
+
+  .activity-card .card-body {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 24px;
+    min-width: 0;
+  }
+
+  .activity-card .time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    padding: 12px 14px;
+    background: #f5f5f7;
+    border-radius: 12px;
+  }
+
+  .activity-card .time-block .time-start {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+
+  .activity-card .time-block .time-divider {
+    width: 14px;
+    height: 1.5px;
+    background: #c7c7cc;
+    margin: 5px 0;
+    border-radius: 1px;
+  }
+
+  .activity-card .time-block .time-end {
+    font-size: 13px;
+    font-weight: 500;
+    color: #8e8e93;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+
+  .activity-card .content-area {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .activity-card .content-area .activity-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  .activity-card .content-area .category-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #8e8e93;
+  }
+
+  .activity-card .content-area .category-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .activity-card .content-area .category-badge.Physique { color: #34c759; }
+  .activity-card .content-area .category-badge.Social { color: #ff9500; }
+  .activity-card .content-area .category-badge.Santé { color: #0a84ff; }
+  .activity-card .content-area .category-badge.Éducatif { color: #5856d6; }
+  .activity-card .content-area .category-badge.Créatif { color: #ff2d55; }
+
+  .activity-card .icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #f5f5f7;
+    color: #8e8e93;
+    transition: transform 0.25s ease;
+  }
+
+  .activity-card .icon-wrapper svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .activity-card .icon-wrapper.Physique { 
+    background: linear-gradient(135deg, #dcf8e0 0%, #b8f0c0 100%); 
+    color: #248a3d;
+  }
+  .activity-card .icon-wrapper.Social { 
+    background: linear-gradient(135deg, #ffedcc 0%, #ffe0a3 100%); 
+    color: #c77700;
+  }
+  .activity-card .icon-wrapper.Santé { 
+    background: linear-gradient(135deg, #d6eeff 0%, #b3dfff 100%); 
+    color: #0071e3;
+  }
+  .activity-card .icon-wrapper.Éducatif { 
+    background: linear-gradient(135deg, #e8e7ff 0%, #d4d2ff 100%); 
+    color: #3634a3;
+  }
+  .activity-card .icon-wrapper.Créatif { 
+    background: linear-gradient(135deg, #ffe5ea 0%, #ffccd5 100%); 
+    color: #d30f45;
+  }
+
+  .activity-card:hover .icon-wrapper {
+    transform: scale(1.08);
+  }
+
+  @media (max-width: 640px) {
+    .activity-card {
+      border-radius: 16px;
+      grid-template-columns: 5px 1fr;
+    }
+
+    .activity-card .accent-bar {
+      width: 5px;
+    }
+
+    .activity-card .card-body {
+      padding: 16px 14px;
+      gap: 14px;
+    }
+
+    .activity-card .time-block {
+      min-width: 52px;
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+
+    .activity-card .time-block .time-start { font-size: 14px; }
+    .activity-card .time-block .time-divider { width: 10px; margin: 4px 0; }
+    .activity-card .time-block .time-end { font-size: 12px; }
+
+    .activity-card .content-area { gap: 4px; }
+    .activity-card .content-area .activity-title { font-size: 16px; }
+    .activity-card .content-area .category-badge { font-size: 10px; }
+
+    .activity-card .icon-wrapper {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+    }
+    .activity-card .icon-wrapper svg { width: 18px; height: 18px; }
+  }
+</style>
+
+<script is:inline define:vars={{ data }}>
+  const container = document.getElementById('planning-list');
+  const dayTitle = document.getElementById('current-day-title');
+  const btns = document.querySelectorAll('.day-link');
+
+  function update(day) {
+    if (!data[day] || !container) return;
+    
+    if(dayTitle) dayTitle.innerText = day.charAt(0).toUpperCase() + day.slice(1);
+
+    const groupedData = [];
+    data[day].forEach((item) => {
+      const lastItem = groupedData[groupedData.length - 1];
+      if (lastItem && lastItem.a === item.a && lastItem.d === item.d) {
+        const startTime = lastItem.t.split('—')[0].trim();
+        const endTime = item.t.split('—')[1].trim();
+        lastItem.t = `${startTime} — ${endTime}`;
+      } else {
+        groupedData.push({ ...item });
+      }
+    });
+
+    container.innerHTML = groupedData.map((item, index) => {
+      const timeSplit = item.t.split('—').map(s => s.trim());
+      
+      return `
+      <div class="activity-card reveal-card" style="animation-delay: ${index * 0.06}s">
+        <div class="accent-bar ${item.d}"></div>
+        <div class="card-body">
+          <div class="time-block">
+            <span class="time-start">${timeSplit[0]}</span>
+            <div class="time-divider"></div>
+            <span class="time-end">${timeSplit[1]}</span>
+          </div>
+          <div class="content-area">
+            <h3 class="activity-title">${item.a}</h3>
+            <span class="category-badge ${item.d}">${item.d}</span>
+          </div>
+          <div class="icon-wrapper ${item.d}">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              ${getIconPath(item.icon)}
+            </svg>
+          </div>
+        </div>
+      </div>
+    `}).join('');
+  }
+
+  function getIconPath(name) {
+    const paths = {
+      heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
+      users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+      leaf: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1.45 10 0 0-1 0-3-4.25A4.75 4.75 0 0 1 11 20z"/>',
+      vote: '<path d="m9 12 2 2 4-4"/><path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z"/><path d="M22 19H2"/>',
+      target: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+      briefcase: '<rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+      'file-text': '<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/>',
+      dumbbell: '<path d="M6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M18 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M22 12h-4"/><path d="M6 12H2"/><path d="M15 12H9"/><path d="M6 7.413V16.587"/><path d="M18 7.413V16.587"/>',
+      utensils: '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v2"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/><path d="M11 11v11"/>',
+      mic: '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/><line x1="8" x2="16" y1="22" y2="22"/>',
+      'graduation-cap': '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
+      palette: '<circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.688-1.688h1.906c3.11 0 5.64-2.53 5.64-5.64 0-4.93-4.19-8.734-10-8.734Z"/>',
+      car: '<path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.7 0-1.3.3-1.8.7l-2.2 2.3S1 10.6 1 11.1v4.9c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>',
+      video: '<path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/>'
+    };
+    return paths[name] || paths.heart;
+  }
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      // @ts-ignore
+      update(btn.dataset.day);
+    });
+  });
+
+  update('lundi');
+</script>
+
+<style>
+  @keyframes slideIn {
+    from { 
+      opacity: 0; 
+      transform: translateY(16px) scale(0.98); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0) scale(1); 
+    }
+  }
+  .reveal-card {
+    animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+  }
+</style>

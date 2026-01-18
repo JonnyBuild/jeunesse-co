@@ -1,0 +1,200 @@
+---
+import { Image } from 'astro:assets';
+import image4 from '../assets/image4.webp';
+import image1 from '../assets/image1.webp';
+import image2 from '../assets/image2.webp';
+---
+<section id="metier" class="history bg-white">
+  <div class="container">
+    <div class="history__layout">
+      
+      <!-- LEFT COLUMN: Sticky Info -->
+      <aside class="history__sidebar">
+        <div class="label">03. Notre métier</div>
+        <h2 class="history__title">Comprendre le contexte pour <span class="serif italic">mieux agir</span>.</h2>
+        
+        <div class="history__manifesto mt-60">
+          <div class="pillar-item">
+            <span class="pillar-label">Finalité</span>
+            <p><strong>Au service de la société</strong> — Nous plaçons l'humain au cœur de chaque action.</p>
+          </div>
+          <div class="pillar-item mt-32">
+            <span class="pillar-label">Gouvernance</span>
+            <p><strong>Participative & Éthique</strong> — Une structure horizontale valorisant le terrain.</p>
+          </div>
+        </div>
+
+        <div class="history__sidebar-image mt-60 hide-tablet">
+          <Image src={image4} alt="Notre expertise" class="img-cover" width={400} height={500} loading="lazy" />
+        </div>
+      </aside>
+
+      <!-- RIGHT COLUMN: The Timeline -->
+      <main class="history__main">
+        <p class="text-large mb-80">
+          L'évolution des sociétés occidentales a profondément modifié les modes de solidarité. L'individu s'est émancipé mais s'est aussi retrouvé <span class="serif">plus isolé</span> face aux injonctions de la société moderne.
+        </p>
+
+        <div class="editorial-timeline">
+          
+          <div class="era-item">
+            <div class="era-header">
+              <span class="era-date">16e — 19e Siècle</span>
+              <h3 class="serif">L'essor de l'individualisme</h3>
+            </div>
+            <div class="era-content">
+              <p class="text-muted">Depuis la Renaissance jusqu'au 19e siècle, l'individu est devenu plus libre. La révolution industrielle a ensuite transformé les modes de vie, déplaçant les habitants vers les villes et rompant les liens communautaires ancestraux.</p>
+              <div class="era-image mt-40">
+                <Image src={image1} alt="Histoire" class="img-cover" width={500} height={300} loading="lazy" />
+              </div>
+            </div>
+          </div>
+
+          <div class="era-item">
+            <div class="era-header">
+              <span class="era-date">Année 1893</span>
+              <h3 class="serif">Solidarité Organique</h3>
+            </div>
+            <div class="era-content">
+              <p class="text-muted">En quittant les villages, les individus ont rompu la solidarité « mécanique », laissant place à une solidarité « organique » basée sur l'interdépendance des rôles spécialisés, mais perdant la proximité du soutien direct.</p>
+            </div>
+          </div>
+
+          <div class="era-item">
+            <div class="era-header">
+              <span class="era-date">1800 — 1960</span>
+              <h3 class="serif">Protection de l'enfance</h3>
+            </div>
+            <div class="era-content">
+              <p class="text-muted">L'État s'est substitué aux familles de manière normative. En Suisse, plus de 100 000 enfants ont été placés entre 1800 et 1960. Des excuses officielles ont été présentées en 1986 pour reconnaître ces failles historiques.</p>
+              <div class="era-image mt-40">
+                <Image src={image2} alt="Protection" class="img-cover" width={500} height={300} loading="lazy" />
+              </div>
+            </div>
+          </div>
+
+          <div class="era-item">
+            <div class="era-header">
+              <span class="era-date">Aujourd'hui</span>
+              <h3 class="serif">Les défis à Genève</h3>
+            </div>
+            <div class="era-content">
+              <p class="text-muted">Face à la complexité croissante des situations sociales, Jeunesse & Co propose une alternative mobile et sur mesure, capable de s'adapter là où le système institutionnel classique atteint ses limites.</p>
+              <a href="#contact" class="btn btn--filled mt-40">Nous contacter</a>
+            </div>
+          </div>
+
+        </div>
+      </main>
+
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .history {
+    padding: 160px 0;
+    border-top: 1px solid var(--color-border);
+
+    &__layout {
+      display: grid;
+      grid-template-columns: 4fr 7fr;
+      gap: 100px;
+      align-items: start;
+
+      @media (max-width: 1200px) {
+        gap: 60px;
+      }
+
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+    }
+
+    &__sidebar {
+      @media (min-width: 1025px) {
+        position: sticky;
+        top: 120px;
+        height: fit-content;
+        align-self: start;
+      }
+    }
+
+    &__title {
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 1.1;
+      margin-top: 24px;
+    }
+
+    .pillar-item {
+      border-left: 2px solid var(--color-accent);
+      padding-left: clamp(16px, 3vw, 24px);
+      
+      .pillar-label {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-text-muted);
+        margin-bottom: 8px;
+      }
+      p { font-size: 15px; margin: 0; line-height: 1.4; }
+    }
+
+    &__sidebar-image {
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      box-shadow: var(--shadow-md);
+      
+      @media (min-width: 1025px) {
+        aspect-ratio: 1/1;
+      }
+    }
+
+    // Timeline Styling
+    .editorial-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(60px, 8vw, 100px);
+    }
+
+    .era-item {
+      border-top: 1px solid var(--color-border);
+      padding-top: clamp(32px, 5vw, 40px);
+    }
+
+    .era-date {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--color-bg);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 20px;
+    }
+
+    .era-content {
+      p { font-size: clamp(16px, 1.5vw, 18px); line-height: 1.7; max-width: 600px; }
+    }
+
+    .era-image {
+      border-radius: clamp(24px, 4vw, 32px);
+      overflow: hidden;
+      height: clamp(250px, 40vw, 400px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .serif {
+      font-family: var(--font-headline);
+      font-style: italic;
+    }
+
+    .hide-tablet {
+      @media (max-width: 1024px) { display: none; }
+    }
+  }
+</style>
