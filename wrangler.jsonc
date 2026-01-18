@@ -1,7 +1,5 @@
 {
   "name": "jeunesse-co",
   "compatibility_date": "2025-01-18",
-  "assets": {
-    "directory": "./dist"
-  }
+  "pages_build_output_dir": "./dist"
 }
