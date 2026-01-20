@@ -1,137 +1,239 @@
 ---
 import { Image } from 'astro:assets';
-import image1 from '../assets/image1.webp';
-import image2 from '../assets/image2.webp';
-import image3 from '../assets/image3.webp';
-import image4 from '../assets/image4.webp';
+import teamImage from '../assets/image2.webp';
 
 const team = [
   {
     name: "Hacene Debbah",
-    role: "Fondateur & Éducateur social HES",
-    image: image1,
-    bio: "Spécialiste de l'accompagnement en milieu ouvert avec plus de 10 ans d'expertise."
+    role: "Directeur Général & Fondateur",
+    initials: "HD"
   },
   {
-    name: "Sonia",
-    role: "Éducatrice sociale HES",
-    image: image2,
-    bio: "Experte en médiation familiale et insertion des jeunes adultes."
+    name: "Léonard Férati",
+    role: "Directeur Co-Fondateur",
+    initials: "LF"
   },
   {
-    name: "Marc",
-    role: "Éducateur social HES",
-    image: image3,
-    bio: "Accompagnement transversal et gestion de crise."
+    name: "Olivier Beroud",
+    role: "Directeur Co-Fondateur",
+    initials: "OB"
   },
   {
-    name: "Julie",
-    role: "Éducatrice sociale HES",
-    image: image4,
-    bio: "Spécialisée dans le suivi administratif et le projet de suite."
+    name: "Anthony Roulet",
+    role: "Directeur Co-Fondateur",
+    initials: "AR"
   }
 ];
 ---
 
-<section id="team" class="team bg-white">
+<section id="team" class="team">
   <div class="container">
     <div class="team__header reveal">
       <div class="label">L'équipe</div>
-      <h2>Des professionnels de terrain<span>.</span></h2>
-      <p class="text-large mt-24 text-muted" style="max-width: 700px;">
-        Tous nos collaborateurs sont diplômés HES et possèdent une connaissance approfondie du réseau socio-éducatif genevois.
-      </p>
+      <h2>La direction<span>.</span></h2>
     </div>
 
-    <div class="team__grid mt-80">
-      {team.map((member) => (
-        <div class="member-card reveal">
-          <div class="member-card__img-wrapper">
-            <Image src={member.image} alt={member.name} class="img-cover" width={400} height={500} loading="lazy" />
-            <div class="member-card__overlay">
-              <p>{member.bio}</p>
-            </div>
-          </div>
-          <div class="member-card__info mt-24">
-            <h3>{member.name}</h3>
-            <p class="text-accent">{member.role}</p>
+    <div class="team__layout mt-80">
+      <!-- Photo de bureau -->
+      <div class="team__image reveal">
+        <div class="team__image-wrapper">
+          <Image 
+            src={teamImage} 
+            alt="Notre équipe au bureau" 
+            class="img-cover" 
+            width={800} 
+            height={900} 
+            loading="lazy" 
+          />
+          <div class="team__image-overlay"></div>
+          <div class="team__image-quote">
+            <blockquote class="serif">
+              "Unis par une même passion : l'accompagnement des jeunes vers leur réussite."
+            </blockquote>
           </div>
         </div>
-      ))}
+      </div>
+
+      <!-- Liste des membres -->
+      <div class="team__list">
+        {team.map((member, index) => (
+          <article class="team__member reveal" style={`--delay: ${index * 0.1}s`}>
+            <div class="team__member-dot"></div>
+            <div class="team__member-content">
+              <h3>{member.name}</h3>
+              <span class="team__member-role">{member.role}</span>
+            </div>
+          </article>
+        ))}
+
+        <div class="team__cta reveal">
+          <p class="text-muted">Quatre leaders formés à la Haute École de Travail Social de Genève, avec plus de 15 ans d'expérience cumulée dans l'accompagnement des jeunes.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <style lang="scss">
   .team {
-    &__grid {
+    background: linear-gradient(180deg, #FAFAFA 0%, #F5F5F5 100%);
+
+    &__layout {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: stretch;
 
       @media (max-width: 1024px) {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      @media (max-width: 640px) {
         grid-template-columns: 1fr;
+        gap: 48px;
       }
     }
 
-    .member-card {
-      &__img-wrapper {
+    &__image {
+      &-wrapper {
         position: relative;
-        aspect-ratio: 4/5;
         border-radius: 32px;
         overflow: hidden;
-        background: var(--color-surface);
+        height: 100%;
+        min-height: 600px;
+
+        @media (max-width: 1024px) {
+          min-height: 450px;
+        }
+
+        @media (max-width: 768px) {
+          min-height: 350px;
+          border-radius: 24px;
+        }
 
         img {
-          transition: transform 0.6s var(--ease-out);
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          transition: transform 0.8s var(--ease-out);
+        }
+
+        &:hover img {
+          transform: scale(1.03);
         }
       }
 
-      &__overlay {
+      &-overlay {
         position: absolute;
         inset: 0;
-        background: rgba(17, 17, 17, 0.8);
-        padding: 32px;
-        display: flex;
-        align-items: flex-end;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        
-        p {
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.7) 0%,
+          rgba(0, 0, 0, 0.2) 40%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        z-index: 1;
+      }
+
+      &-quote {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: clamp(24px, 5vw, 48px);
+        z-index: 2;
+
+        blockquote {
+          font-family: var(--font-headline);
+          font-size: clamp(18px, 2.5vw, 26px);
+          line-height: 1.4;
           color: white;
-          font-size: 15px;
-          transform: translateY(20px);
-          transition: transform 0.4s var(--ease-out);
+          font-style: italic;
+          margin: 0;
         }
+      }
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    &__member {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--color-border);
+      transition: all 0.4s var(--ease-out);
+      animation-delay: var(--delay);
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      &:last-of-type {
+        border-bottom: none;
       }
 
       &:hover {
-        .member-card__img-wrapper img {
-          transform: scale(1.1);
+        padding-left: 16px;
+
+        .team__member-dot {
+          transform: scale(1.5);
+          background: var(--color-primary);
         }
-        .member-card__overlay {
-          opacity: 1;
-          p {
-            transform: translateY(0);
-          }
+
+        .team__member-content h3 {
+          color: var(--color-primary);
         }
       }
 
-      &__info {
+      &-dot {
+        width: 8px;
+        height: 8px;
+        min-width: 8px;
+        border-radius: 50%;
+        background: var(--color-accent);
+        transition: all 0.4s var(--ease-out);
+      }
+
+      &-content {
+        flex: 1;
+
         h3 {
-          font-size: 24px;
-          margin-bottom: 4px;
+          font-family: var(--font-headline);
+          font-size: clamp(20px, 2.5vw, 28px);
+          font-weight: 600;
+          margin: 0 0 6px 0;
+          color: var(--color-text);
+          transition: color 0.3s var(--ease-out);
         }
-        .text-accent {
-          font-size: 14px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          color: #B28B00; // Slightly darker accent for readability on white
-        }
+      }
+
+      &-role {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-text-muted);
+      }
+    }
+
+    &__cta {
+      margin-top: 40px;
+      padding: 32px;
+      background: var(--color-surface);
+      border-radius: 20px;
+
+      p {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 768px) {
+        margin-top: 24px;
+        padding: 24px;
       }
     }
   }

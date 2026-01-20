@@ -48,6 +48,10 @@ const heroImage = preloadHeroImage ? await getImage({ src: image6, width: 600, h
 				import("gsap").then(({ gsap }) => {
 					import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
 						gsap.registerPlugin(ScrollTrigger);
+						
+						// Force refresh for Safari compatibility
+						ScrollTrigger.config({ ignoreMobileResize: true });
+						
 						gsap.set('.reveal', { opacity: 0, y: 30 });
 						
 						const reveals = document.querySelectorAll('.reveal');
@@ -65,15 +69,27 @@ const heroImage = preloadHeroImage ? await getImage({ src: image6, width: 600, h
 								overwrite: true
 							});
 						});
+						
+						// Refresh ScrollTrigger after setup for Safari
+						ScrollTrigger.refresh();
 					});
 				});
 			};
 
+			// Safari-compatible idle callback
+			const scheduleInit = (callback) => {
+				if ('requestIdleCallback' in window) {
+					window.requestIdleCallback(callback);
+				} else {
+					setTimeout(callback, 1);
+				}
+			};
+
 			if (document.readyState === 'complete') {
-				requestIdleCallback ? requestIdleCallback(initRevealAnimations) : setTimeout(initRevealAnimations, 1);
+				scheduleInit(initRevealAnimations);
 			} else {
 				window.addEventListener('load', () => {
-					requestIdleCallback ? requestIdleCallback(initRevealAnimations) : setTimeout(initRevealAnimations, 1);
+					scheduleInit(initRevealAnimations);
 				});
 			}
 		</script>

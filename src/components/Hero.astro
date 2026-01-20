@@ -449,13 +449,23 @@ import image3 from '../assets/image3.webp';
   
   gsap.registerPlugin(ScrollTrigger);
   
-  document.addEventListener('DOMContentLoaded', () => {
+  // Safari-compatible initialization
+  const initHeroAnimations = () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     if (prefersReducedMotion) {
       gsap.set(".animate-in, .mosaic__item, .mosaic__shape", { opacity: 1, y: 0, x: 0, scale: 1, rotation: 0 });
       return;
     }
+
+    // Set initial states explicitly for Safari
+    gsap.set(".hero__badge", { opacity: 0, y: 20 });
+    gsap.set(".hero__title", { opacity: 0, y: 30 });
+    gsap.set(".hero__description", { opacity: 0, y: 20 });
+    gsap.set(".hero__actions", { opacity: 0, y: 20 });
+    gsap.set(".hero__trust", { opacity: 0, y: 20 });
+    gsap.set(".mosaic__item", { opacity: 0 });
+    gsap.set(".mosaic__shape", { opacity: 0, scale: 0 });
 
     const masterTL = gsap.timeline({ 
       defaults: { ease: "power4.out" }
@@ -611,5 +621,16 @@ import image3 from '../assets/image3.webp';
         }
       });
     }
-  });
+    
+    // Refresh ScrollTrigger for Safari
+    ScrollTrigger.refresh();
+  };
+
+  // Use DOMContentLoaded with Safari-safe fallback
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroAnimations);
+  } else {
+    // DOM already loaded, run immediately
+    initHeroAnimations();
+  }
 </script>
