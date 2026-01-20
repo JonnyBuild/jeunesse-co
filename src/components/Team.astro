@@ -76,7 +76,31 @@ const team = [
 
 <style lang="scss">
   .team {
-    background: linear-gradient(180deg, #FAFAFA 0%, #F5F5F5 100%);
+    background: var(--color-primary);
+
+    &__header {
+      .label {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-accent);
+        margin-bottom: 24px;
+        padding: 6px 16px;
+        border: 1px solid var(--color-accent);
+        border-radius: 100px;
+        background: rgba(255, 223, 92, 0.1);
+      }
+
+      h2 {
+        color: var(--color-white);
+        
+        span {
+          color: var(--color-accent);
+        }
+      }
+    }
 
     &__layout {
       display: grid;
@@ -163,7 +187,7 @@ const team = [
       align-items: center;
       gap: 24px;
       padding: 32px 0;
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.4s var(--ease-out);
       animation-delay: var(--delay);
 
@@ -180,11 +204,12 @@ const team = [
 
         .team__member-dot {
           transform: scale(1.5);
-          background: var(--color-primary);
+          background: var(--color-accent);
+          box-shadow: 0 0 10px var(--color-accent);
         }
 
         .team__member-content h3 {
-          color: var(--color-primary);
+          color: var(--color-accent);
         }
       }
 
@@ -205,7 +230,7 @@ const team = [
           font-size: clamp(20px, 2.5vw, 28px);
           font-weight: 600;
           margin: 0 0 6px 0;
-          color: var(--color-text);
+          color: var(--color-white);
           transition: color 0.3s var(--ease-out);
         }
       }
@@ -215,20 +240,22 @@ const team = [
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        color: var(--color-text-muted);
+        color: rgba(255, 255, 255, 0.6);
       }
     }
 
     &__cta {
       margin-top: 40px;
       padding: 32px;
-      background: var(--color-surface);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
 
       p {
         margin: 0;
         font-size: 15px;
         line-height: 1.7;
+        color: rgba(255, 255, 255, 0.8);
       }
 
       @media (max-width: 768px) {

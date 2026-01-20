@@ -86,7 +86,7 @@ import image3 from '../assets/image3.webp';
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background-color: var(--color-bg);
+    background-color: var(--color-primary);
     overflow: hidden;
 
     @media (max-width: 1024px) {
@@ -164,7 +164,7 @@ import image3 from '../assets/image3.webp';
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 24px;
-      color: var(--color-primary);
+      color: var(--color-accent);
       opacity: 0;
       transform: translateY(20px);
 
@@ -184,7 +184,7 @@ import image3 from '../assets/image3.webp';
       letter-spacing: -0.025em;
       margin-bottom: 24px;
       font-weight: 700;
-      color: var(--color-primary);
+      color: var(--color-white);
       opacity: 0;
       transform: translateY(30px);
     }
@@ -193,7 +193,7 @@ import image3 from '../assets/image3.webp';
       max-width: 500px;
       margin-bottom: 32px;
       line-height: 1.6;
-      color: var(--color-text-muted);
+      color: rgba(255, 255, 255, 0.8);
       opacity: 0;
       transform: translateY(20px);
 
@@ -211,8 +211,9 @@ import image3 from '../assets/image3.webp';
       transform: translateY(20px);
 
       .btn--outline {
-        border: 1px solid var(--color-border);
-        &:hover { border-color: var(--color-primary); }
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: var(--color-white);
+        &:hover { border-color: var(--color-white); }
       }
 
       @media (max-width: 1024px) {
@@ -237,9 +238,9 @@ import image3 from '../assets/image3.webp';
       }
 
       .trust-item { display: flex; flex-direction: column; }
-      .trust-num { font-family: var(--font-headline); font-size: 28px; font-weight: 700; color: var(--color-primary); }
-      .trust-text { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); letter-spacing: 0.02em; }
-      .trust-divider { width: 1px; height: 32px; background: var(--color-border); }
+      .trust-num { font-family: var(--font-headline); font-size: 28px; font-weight: 700; color: var(--color-white); }
+      .trust-text { font-size: 12px; font-weight: 700; text-transform: uppercase; color: rgba(255, 255, 255, 0.6); letter-spacing: 0.02em; }
+      .trust-divider { width: 1px; height: 32px; background: rgba(255, 255, 255, 0.2); }
     }
   }
 
