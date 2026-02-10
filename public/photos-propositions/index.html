@@ -3,145 +3,202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Propositions Photos - Jeunesse & Co</title>
+  <title>Propositions Photos V2 - Jeunesse & Co</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { 
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f5f5f5;
+      background: #111;
+      color: #fff;
       padding: 40px 20px;
     }
     h1 { 
       text-align: center; 
+      margin-bottom: 16px;
+      color: #FFDF5C;
+    }
+    .subtitle {
+      text-align: center;
+      color: #888;
       margin-bottom: 40px;
-      color: #111;
+    }
+    h2 {
+      color: #FFDF5C;
+      margin: 40px 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #333;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
       max-width: 1400px;
       margin: 0 auto;
     }
     .card {
-      background: white;
+      background: #1a1a1a;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      border: 1px solid #333;
     }
     .card img {
       width: 100%;
-      height: 250px;
+      height: 200px;
       object-fit: cover;
     }
     .card-info {
-      padding: 20px;
+      padding: 16px;
     }
     .card-info h3 {
-      font-size: 16px;
-      margin-bottom: 8px;
-      color: #111;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #fff;
     }
     .card-info p {
-      font-size: 14px;
-      color: #666;
+      font-size: 12px;
+      color: #888;
+    }
+    .section-tag {
+      display: inline-block;
+      background: #FFDF5C;
+      color: #111;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: bold;
+      margin-bottom: 8px;
     }
     .note {
       text-align: center;
       margin-top: 40px;
       color: #666;
       font-size: 14px;
+      padding: 20px;
+      background: #1a1a1a;
+      border-radius: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
   </style>
 </head>
 <body>
-  <h1>📸 Propositions Photos - Jeunesse & Co</h1>
+  <h1>📸 Propositions Photos V2</h1>
+  <p class="subtitle">Photos Genève + Sections du site</p>
   
+  <h2>🇨🇭 Genève / Suisse</h2>
   <div class="grid">
     <div class="card">
-      <img src="01-groupe-discussion.jpg" alt="Groupe discussion">
+      <img src="01-geneve-lac.jpg" alt="Lac Léman">
       <div class="card-info">
-        <h3>01 - Groupe en discussion</h3>
-        <p>Ambiance collaborative, moment de partage</p>
+        <span class="section-tag">HERO / FOND</span>
+        <h3>01 - Lac Léman</h3>
+        <p>Vue panoramique, ambiance calme</p>
       </div>
     </div>
-    
     <div class="card">
-      <img src="02-collaboration-mains.jpg" alt="Collaboration mains">
+      <img src="02-geneve-jetdeau.jpg" alt="Jet d'eau">
       <div class="card-info">
-        <h3>02 - Collaboration (mains)</h3>
-        <p>Travail d'équipe, connexion humaine</p>
+        <span class="section-tag">HERO / IDENTITÉ</span>
+        <h3>02 - Jet d'eau Genève</h3>
+        <p>Symbole iconique de Genève</p>
       </div>
     </div>
-    
     <div class="card">
-      <img src="03-groupe-sourire.jpg" alt="Groupe sourire">
+      <img src="03-geneve-vieille-ville.jpg" alt="Vieille ville">
       <div class="card-info">
-        <h3>03 - Groupe souriant</h3>
-        <p>Ambiance positive, convivialité</p>
+        <span class="section-tag">ABOUT / HISTOIRE</span>
+        <h3>03 - Vieille ville</h3>
+        <p>Architecture historique genevoise</p>
       </div>
     </div>
-    
     <div class="card">
-      <img src="04-mentoring.jpg" alt="Mentoring">
+      <img src="04-suisse-montagnes.jpg" alt="Montagnes">
       <div class="card-info">
-        <h3>04 - Mentorat / Accompagnement</h3>
-        <p>Relation individuelle, écoute</p>
+        <span class="section-tag">SYMBOLIQUE</span>
+        <h3>04 - Montagnes suisses</h3>
+        <p>Parcours, élévation, objectifs</p>
       </div>
     </div>
-    
+  </div>
+
+  <h2>🎓 Éducation / Accompagnement</h2>
+  <div class="grid">
     <div class="card">
-      <img src="05-chemin-lumiere.jpg" alt="Chemin lumière">
+      <img src="05-education-tableau.jpg" alt="Éducation">
       <div class="card-info">
-        <h3>05 - Chemin vers la lumière</h3>
-        <p>Symbolique : parcours, avenir, espoir</p>
+        <span class="section-tag">MÉTHODE</span>
+        <h3>05 - Éducation / Formation</h3>
+        <p>Apprentissage, transmission</p>
       </div>
     </div>
-    
     <div class="card">
-      <img src="06-sport-exterieur.jpg" alt="Sport extérieur">
+      <img src="06-jeunes-discussion.jpg" alt="Jeunes discussion">
       <div class="card-info">
-        <h3>06 - Sport / Activité physique</h3>
-        <p>Énergie, mouvement, bien-être</p>
+        <span class="section-tag">ABOUT / HERO</span>
+        <h3>06 - Discussion jeunes</h3>
+        <p>Échange, écoute, accompagnement</p>
       </div>
     </div>
-    
     <div class="card">
-      <img src="07-equipe-travail.jpg" alt="Équipe travail">
+      <img src="07-formation.jpg" alt="Formation">
       <div class="card-info">
-        <h3>07 - Équipe au travail</h3>
-        <p>Collaboration, professionnalisme</p>
+        <span class="section-tag">MÉTHODE</span>
+        <h3>07 - Formation en groupe</h3>
+        <p>Apprentissage collectif</p>
       </div>
     </div>
-    
     <div class="card">
-      <img src="08-reunion-discussion.jpg" alt="Réunion discussion">
+      <img src="08-silhouette-marche.jpg" alt="Silhouette">
       <div class="card-info">
-        <h3>08 - Réunion / Discussion</h3>
-        <p>Échange, accompagnement collectif</p>
+        <span class="section-tag">HERO / HISTOIRE</span>
+        <h3>08 - Silhouette / Parcours</h3>
+        <p>Chemin de vie, avenir</p>
       </div>
     </div>
-    
+  </div>
+
+  <h2>🏢 Espaces / Solidarité</h2>
+  <div class="grid">
     <div class="card">
-      <img src="09-bureau-moderne.jpg" alt="Bureau moderne">
+      <img src="09-bureau-lumineux.jpg" alt="Bureau">
       <div class="card-info">
+        <span class="section-tag">CONTACT / ESS</span>
         <h3>09 - Espace de travail</h3>
-        <p>Environnement professionnel, moderne</p>
+        <p>Bureau lumineux, professionnel</p>
       </div>
     </div>
-    
     <div class="card">
-      <img src="10-accompagnement.jpg" alt="Accompagnement">
+      <img src="10-coworking.jpg" alt="Coworking">
       <div class="card-info">
-        <h3>10 - Accompagnement individuel</h3>
-        <p>Relation éducateur-jeune, soutien</p>
+        <span class="section-tag">ESS / ÉQUIPE</span>
+        <h3>10 - Coworking</h3>
+        <p>Travail collaboratif</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="11-reunion-equipe.jpg" alt="Réunion">
+      <div class="card-info">
+        <span class="section-tag">ABOUT / ÉQUIPE</span>
+        <h3>11 - Réunion d'équipe</h3>
+        <p>Collaboration, planification</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="12-mains-solidarite.jpg" alt="Solidarité">
+      <div class="card-info">
+        <span class="section-tag">ESS / VALEURS</span>
+        <h3>12 - Mains solidarité</h3>
+        <p>Entraide, connexion humaine</p>
       </div>
     </div>
   </div>
   
-  <p class="note">
-    ✅ = Garder &nbsp;|&nbsp; ❌ = Supprimer &nbsp;|&nbsp; 💬 = Commentaire<br>
-    Dis-moi lesquelles tu veux garder !
-  </p>
+  <div class="note">
+    <strong>💬 Dis-moi :</strong><br><br>
+    • Lesquelles tu veux garder ?<br>
+    • Pour quelle section ?<br>
+    • Tu veux d'autres styles ?
+  </div>
 </body>
 </html>
