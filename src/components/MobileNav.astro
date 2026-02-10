@@ -1,10 +1,11 @@
 ---
+const base = import.meta.env.BASE_URL;
 ---
 <div class="mobile-nav" id="mobile-nav">
   <div class="mobile-nav__overlay"></div>
   <div class="mobile-nav__content">
     <div class="mobile-nav__header">
-      <img src="/assets/Logo1.svg" alt="Jeunesse & Co" class="mobile-nav__logo" width="140" height="32" />
+      <img src={`${base}/assets/Logo1.svg`} alt="Jeunesse & Co" class="mobile-nav__logo" width="140" height="32" />
       <button class="mobile-nav__close" id="mobile-nav-close">
         <span></span>
         <span></span>
@@ -12,11 +13,11 @@
     </div>
     
     <nav class="mobile-nav__links">
-      <a href="/#about" class="mobile-link">L'équipe</a>
-      <a href="/#method" class="mobile-link">Méthode</a>
-      <a href="/#metier" class="mobile-link">Le Métier</a>
-      <a href="/impulsion" class="mobile-link">Programme Impulsion</a>
-      <a href="/#contact" class="mobile-link mobile-link--cta">Contact</a>
+      <a href={`${base}/#about`} class="mobile-link">L'équipe</a>
+      <a href={`${base}/#method`} class="mobile-link">Méthode</a>
+      <a href={`${base}/#metier`} class="mobile-link">Le Métier</a>
+      <a href={`${base}/impulsion`} class="mobile-link">Programme Impulsion</a>
+      <a href={`${base}/#contact`} class="mobile-link mobile-link--cta">Contact</a>
     </nav>
     
     <div class="mobile-nav__footer">
