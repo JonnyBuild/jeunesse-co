@@ -3,6 +3,44 @@ import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 const base = import.meta.env.BASE_URL;
 
+const intervenants = [
+  {
+    name: "Issa Dieng",
+    role: "Ateliers Audiovisuels",
+    job: "Vidéaste & Photographe — CEO de Pacific Images",
+    photo: "issa_dieng.jpeg",
+    bio: `Fort de sept ans d'expérience dans l'audiovisuel, Issa adopte une approche humaine et collaborative. En partant des centres d'intérêt des jeunes — notamment le rap et les clips — il construit des projets avec eux, leur faisant découvrir toutes les étapes de la production, du concept au montage.`
+  },
+  {
+    name: "Corrado Storelli",
+    role: "À définir",
+    job: "À définir",
+    photo: "corrado-storelli.jpeg",
+    bio: `Description à venir...`
+  },
+  {
+    name: "Elke Arod",
+    role: "À définir",
+    job: "À définir",
+    photo: "elke-arod.png",
+    bio: `Description à venir...`
+  },
+  {
+    name: "Nadim Boutemine",
+    role: "À définir",
+    job: "À définir",
+    photo: "nadim_boutemine.jpeg",
+    bio: `Description à venir...`
+  },
+  {
+    name: "Venant Fanga",
+    role: "À définir",
+    job: "À définir",
+    photo: "venant-fanga.jpeg",
+    bio: `Description à venir...`
+  }
+];
+
 const data = {
   lundi: [
     { t: "08:30 — 10:05", a: "Sport", d: "Physique", icon: "dumbbell" },
@@ -509,77 +547,107 @@ const data = {
       </div>
 
       <div class="intervenants-grid">
-        <!-- Issa Dieng -->
-        <div class="intervenant-card reveal">
-          <div class="intervenant-photo">
-            <img src={`${base}/assets/intervenants/issa_dieng.jpeg`} alt="Issa Dieng" />
+        {intervenants.map((intervenant, index) => (
+          <div 
+            class="intervenant-card reveal" 
+            data-intervenant-index={index}
+            role="button"
+            tabindex="0"
+            aria-label={`Voir le profil de ${intervenant.name}`}
+          >
+            <div class="intervenant-photo">
+              <img src={`${base}/assets/intervenants/${intervenant.photo}`} alt={intervenant.name} />
+              <div class="photo-overlay">
+                <span>Voir le profil</span>
+              </div>
+            </div>
+            <div class="intervenant-info">
+              <h3>{intervenant.name}</h3>
+              <span class="intervenant-role">{intervenant.role}</span>
+            </div>
           </div>
-          <div class="intervenant-info">
-            <h3>Issa Dieng</h3>
-            <span class="intervenant-role">Ateliers Audiovisuels</span>
-            <p class="intervenant-job">Vidéaste & Photographe — CEO de Pacific Images</p>
-            <p class="intervenant-desc">
-              Fort de sept ans d'expérience dans l'audiovisuel, Issa adopte une approche humaine et collaborative.
-              En partant des centres d'intérêt des jeunes — notamment le rap et les clips — il construit des projets avec eux,
-              leur faisant découvrir toutes les étapes de la production, du concept au montage.
-            </p>
-          </div>
-        </div>
+        ))}
+      </div>
+    </div>
 
-        <!-- Corrado Storelli -->
-        <div class="intervenant-card reveal">
-          <div class="intervenant-photo">
-            <img src={`${base}/assets/intervenants/corrado-storelli.jpeg`} alt="Corrado Storelli" />
+    <!-- Modal Intervenant -->
+    <div class="intervenant-modal" id="intervenantModal" aria-hidden="true">
+      <div class="intervenant-modal__backdrop"></div>
+      <div class="intervenant-modal__container">
+        <div class="intervenant-modal__content">
+          <button class="intervenant-modal__close" aria-label="Fermer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="intervenant-modal__header">
+            <img id="modalPhoto" src="" alt="" class="intervenant-modal__photo" />
+            <div class="intervenant-modal__info">
+              <h3 id="modalName"></h3>
+              <span id="modalRole"></span>
+              <p id="modalJob"></p>
+            </div>
           </div>
-          <div class="intervenant-info">
-            <h3>Corrado Storelli</h3>
-            <span class="intervenant-role">À définir</span>
-            <p class="intervenant-job">À définir</p>
-            <p class="intervenant-desc">Description à venir...</p>
-          </div>
-        </div>
-
-        <!-- Elke Arod -->
-        <div class="intervenant-card reveal">
-          <div class="intervenant-photo">
-            <img src={`${base}/assets/intervenants/elke-arod.png`} alt="Elke Arod" />
-          </div>
-          <div class="intervenant-info">
-            <h3>Elke Arod</h3>
-            <span class="intervenant-role">À définir</span>
-            <p class="intervenant-job">À définir</p>
-            <p class="intervenant-desc">Description à venir...</p>
-          </div>
-        </div>
-
-        <!-- Nadim Boutemine -->
-        <div class="intervenant-card reveal">
-          <div class="intervenant-photo">
-            <img src={`${base}/assets/intervenants/nadim_boutemine.jpeg`} alt="Nadim Boutemine" />
-          </div>
-          <div class="intervenant-info">
-            <h3>Nadim Boutemine</h3>
-            <span class="intervenant-role">À définir</span>
-            <p class="intervenant-job">À définir</p>
-            <p class="intervenant-desc">Description à venir...</p>
-          </div>
-        </div>
-
-        <!-- Venant Fanga -->
-        <div class="intervenant-card reveal">
-          <div class="intervenant-photo">
-            <img src={`${base}/assets/intervenants/venant-fanga.jpeg`} alt="Venant Fanga" />
-          </div>
-          <div class="intervenant-info">
-            <h3>Venant Fanga</h3>
-            <span class="intervenant-role">À définir</span>
-            <p class="intervenant-job">À définir</p>
-            <p class="intervenant-desc">Description à venir...</p>
+          <div class="intervenant-modal__body">
+            <p id="modalBio"></p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <script define:vars={{ intervenants, base }}>
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('intervenantModal');
+      const modalName = document.getElementById('modalName');
+      const modalRole = document.getElementById('modalRole');
+      const modalJob = document.getElementById('modalJob');
+      const modalBio = document.getElementById('modalBio');
+      const modalPhoto = document.getElementById('modalPhoto');
+      const closeBtn = modal.querySelector('.intervenant-modal__close');
+      const backdrop = modal.querySelector('.intervenant-modal__backdrop');
+      const cards = document.querySelectorAll('.intervenant-card');
+
+      function openModal(index) {
+        const intervenant = intervenants[index];
+        modalName.textContent = intervenant.name;
+        modalRole.textContent = intervenant.role;
+        modalJob.textContent = intervenant.job;
+        modalBio.innerHTML = intervenant.bio.split('\n\n').map(p => `<p>${p}</p>`).join('');
+        modalPhoto.src = `${base}/assets/intervenants/${intervenant.photo}`;
+        modalPhoto.alt = intervenant.name;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          const index = parseInt(card.dataset.intervenantIndex);
+          openModal(index);
+        });
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const index = parseInt(card.dataset.intervenantIndex);
+            openModal(index);
+          }
+        });
+      });
+
+      closeBtn?.addEventListener('click', closeModal);
+      backdrop?.addEventListener('click', closeModal);
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+    });
+  </script>
 
   <section class="planning-section">
     <div class="container">
@@ -1832,6 +1900,7 @@ const data = {
     overflow: hidden;
     border: 1px solid var(--color-border);
     transition: all 0.3s ease;
+    cursor: pointer;
 
     &:hover {
       transform: translateY(-6px);
@@ -1839,6 +1908,10 @@ const data = {
 
       .intervenant-photo img {
         transform: scale(1.05);
+      }
+
+      .photo-overlay {
+        opacity: 1;
       }
     }
   }
@@ -1857,18 +1930,24 @@ const data = {
       transition: transform 0.5s ease;
     }
 
-    .photo-placeholder {
+    .photo-overlay {
       position: absolute;
       inset: 0;
+      background: rgba(0, 0, 0, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(0, 0, 0, 0.2);
-    }
+      opacity: 0;
+      transition: opacity 0.3s ease;
 
-    // Hide placeholder when image loads
-    img:not([src=""]):not([src$="undefined"]) + .photo-placeholder {
-      display: none;
+      span {
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 12px 24px;
+        background: var(--color-primary);
+        border-radius: 100px;
+      }
     }
   }
 
@@ -1892,21 +1971,137 @@ const data = {
       background: var(--color-accent);
       padding: 6px 14px;
       border-radius: 100px;
-      margin-bottom: 12px;
+    }
+  }
+
+  // Modal Intervenant
+  .intervenant-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .intervenant-job {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--color-text-muted);
-      margin: 0 0 16px 0;
+    &__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
     }
 
-    .intervenant-desc {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--color-text);
-      margin: 0;
+    &__container {
+      position: relative;
+      max-width: 600px;
+      width: calc(100% - 40px);
+      max-height: calc(100vh - 80px);
+      overflow-y: auto;
+    }
+
+    &__content {
+      background: white;
+      border-radius: 24px;
+      padding: 32px;
+      position: relative;
+    }
+
+    &__close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: #f5f5f5;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: #eee;
+        transform: rotate(90deg);
+      }
+    }
+
+    &__header {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #eee;
+    }
+
+    &__photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 16px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    &__info {
+      h3 {
+        font-size: 28px;
+        margin: 0 0 8px 0;
+        color: var(--color-primary);
+      }
+
+      span {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: white;
+        background: var(--color-accent);
+        padding: 6px 14px;
+        border-radius: 100px;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: 14px;
+        color: var(--color-text-muted);
+        margin: 8px 0 0 0;
+      }
+    }
+
+    &__body {
+      p {
+        font-size: 16px;
+        line-height: 1.8;
+        color: var(--color-text);
+        margin: 0 0 16px 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    @media (max-width: 600px) {
+      &__header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      &__photo {
+        width: 100px;
+        height: 100px;
+      }
     }
   }
 </style>
