@@ -34,6 +34,14 @@ const base = import.meta.env.BASE_URL;
 		<meta name="generator" content={Astro.generator} />
 		{heroImage && <link rel="preload" as="image" href={heroImage.src} type="image/webp" fetchpriority="high" />}
 		<title>{title}</title>
+		
+		<!-- OpenGraph / Telegram Preview -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="https://alfred-pi.github.io/jeunesse-co-site/assets/image6.webp" />
+		<meta property="og:url" content="https://alfred-pi.github.io/jeunesse-co-site/" />
+		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary_large_image" />
 	</head>
 	<body>
 		<Header />
