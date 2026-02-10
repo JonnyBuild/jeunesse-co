@@ -3,202 +3,187 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Propositions Photos V2 - Jeunesse & Co</title>
+  <title>Photos V3 - Jeunesse & Co</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { 
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #111;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0a;
       color: #fff;
-      padding: 40px 20px;
+      padding: 30px 16px;
     }
-    h1 { 
-      text-align: center; 
-      margin-bottom: 16px;
-      color: #FFDF5C;
-    }
-    .subtitle {
-      text-align: center;
-      color: #888;
-      margin-bottom: 40px;
-    }
-    h2 {
-      color: #FFDF5C;
-      margin: 40px 0 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #333;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .card {
-      background: #1a1a1a;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid #333;
-    }
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    .card-info {
-      padding: 16px;
-    }
-    .card-info h3 {
-      font-size: 14px;
-      margin-bottom: 6px;
-      color: #fff;
-    }
-    .card-info p {
-      font-size: 12px;
-      color: #888;
-    }
-    .section-tag {
-      display: inline-block;
-      background: #FFDF5C;
-      color: #111;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 10px;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-    .note {
-      text-align: center;
-      margin-top: 40px;
-      color: #666;
-      font-size: 14px;
-      padding: 20px;
-      background: #1a1a1a;
-      border-radius: 12px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    h1 { text-align: center; margin-bottom: 8px; color: #FFDF5C; font-size: 24px; }
+    .subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 13px; }
+    h2 { color: #FFDF5C; margin: 30px 0 16px; font-size: 16px; }
+    .context { background: #1a1a1a; padding: 16px; border-radius: 12px; margin-bottom: 30px; font-size: 13px; line-height: 1.6; }
+    .context strong { color: #FFDF5C; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .card { background: #151515; border-radius: 12px; overflow: hidden; border: 1px solid #222; }
+    .card img { width: 100%; height: 180px; object-fit: cover; }
+    .card-info { padding: 14px; }
+    .card-info h3 { font-size: 13px; margin-bottom: 4px; }
+    .card-info p { font-size: 11px; color: #666; }
+    .tag { display: inline-block; background: #FFDF5C; color: #000; padding: 3px 8px; border-radius: 10px; font-size: 9px; font-weight: bold; margin-bottom: 6px; }
+    .note { text-align: center; margin-top: 30px; color: #555; font-size: 12px; }
   </style>
 </head>
 <body>
-  <h1>📸 Propositions Photos V2</h1>
-  <p class="subtitle">Photos Genève + Sections du site</p>
+  <h1>📸 Photos V3 - Travail Social</h1>
+  <p class="subtitle">Accompagnement éducatif jeunes en difficulté</p>
   
-  <h2>🇨🇭 Genève / Suisse</h2>
+  <div class="context">
+    <strong>Contexte Jeunesse & Co :</strong><br>
+    • Accompagnement de jeunes EN DIFFICULTÉ (Tribunal Mineurs, SPMI)<br>
+    • Travail social HORS MURS (terrain, pas bureau)<br>
+    • 5 axes : Bio, Psy, Social, Pro, Admin<br>
+    • Objectif : autonomie, intégration sociale
+  </div>
+
+  <h2>🏠 HERO / Accueil</h2>
+  <p style="color:#888;font-size:11px;margin-bottom:12px;">Accompagnement de terrain, marche ensemble, connexion</p>
   <div class="grid">
     <div class="card">
-      <img src="01-geneve-lac.jpg" alt="Lac Léman">
+      <img src="01-hero-marche-ensemble.jpg" alt="">
       <div class="card-info">
-        <span class="section-tag">HERO / FOND</span>
-        <h3>01 - Lac Léman</h3>
-        <p>Vue panoramique, ambiance calme</p>
+        <span class="tag">HERO</span>
+        <h3>01 - Groupe en marche</h3>
+        <p>Amitié, parcours ensemble</p>
       </div>
     </div>
     <div class="card">
-      <img src="02-geneve-jetdeau.jpg" alt="Jet d'eau">
+      <img src="02-hero-discussion-dehors.jpg" alt="">
       <div class="card-info">
-        <span class="section-tag">HERO / IDENTITÉ</span>
-        <h3>02 - Jet d'eau Genève</h3>
-        <p>Symbole iconique de Genève</p>
+        <span class="tag">HERO</span>
+        <h3>02 - Discussion dehors</h3>
+        <p>Travail de terrain, échange</p>
       </div>
     </div>
     <div class="card">
-      <img src="03-geneve-vieille-ville.jpg" alt="Vieille ville">
+      <img src="03-hero-groupe-jeunes.jpg" alt="">
       <div class="card-info">
-        <span class="section-tag">ABOUT / HISTOIRE</span>
-        <h3>03 - Vieille ville</h3>
-        <p>Architecture historique genevoise</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="04-suisse-montagnes.jpg" alt="Montagnes">
-      <div class="card-info">
-        <span class="section-tag">SYMBOLIQUE</span>
-        <h3>04 - Montagnes suisses</h3>
-        <p>Parcours, élévation, objectifs</p>
+        <span class="tag">HERO</span>
+        <h3>03 - Groupe jeunes</h3>
+        <p>Convivialité, soutien mutuel</p>
       </div>
     </div>
   </div>
 
-  <h2>🎓 Éducation / Accompagnement</h2>
+  <h2>👥 ABOUT / Qui sommes-nous</h2>
+  <p style="color:#888;font-size:11px;margin-bottom:12px;">Écoute, accompagnement individuel, relation de confiance</p>
   <div class="grid">
     <div class="card">
-      <img src="05-education-tableau.jpg" alt="Éducation">
+      <img src="04-about-poignee-main.jpg" alt="">
       <div class="card-info">
-        <span class="section-tag">MÉTHODE</span>
-        <h3>05 - Éducation / Formation</h3>
-        <p>Apprentissage, transmission</p>
+        <span class="tag">ABOUT</span>
+        <h3>04 - Poignée de main</h3>
+        <p>Confiance, engagement</p>
       </div>
     </div>
     <div class="card">
-      <img src="06-jeunes-discussion.jpg" alt="Jeunes discussion">
+      <img src="05-about-discussion-1a1.jpg" alt="">
       <div class="card-info">
-        <span class="section-tag">ABOUT / HERO</span>
-        <h3>06 - Discussion jeunes</h3>
-        <p>Échange, écoute, accompagnement</p>
+        <span class="tag">ABOUT</span>
+        <h3>05 - Discussion 1 à 1</h3>
+        <p>Accompagnement individuel</p>
       </div>
     </div>
     <div class="card">
-      <img src="07-formation.jpg" alt="Formation">
+      <img src="06-about-ecoute.jpg" alt="">
       <div class="card-info">
-        <span class="section-tag">MÉTHODE</span>
-        <h3>07 - Formation en groupe</h3>
-        <p>Apprentissage collectif</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="08-silhouette-marche.jpg" alt="Silhouette">
-      <div class="card-info">
-        <span class="section-tag">HERO / HISTOIRE</span>
-        <h3>08 - Silhouette / Parcours</h3>
-        <p>Chemin de vie, avenir</p>
+        <span class="tag">ABOUT</span>
+        <h3>06 - Écoute</h3>
+        <p>Posture professionnelle</p>
       </div>
     </div>
   </div>
 
-  <h2>🏢 Espaces / Solidarité</h2>
+  <h2>📋 MÉTHODE / 3 étapes</h2>
+  <p style="color:#888;font-size:11px;margin-bottom:12px;">Accueil → Suivi → Projet de suite</p>
   <div class="grid">
     <div class="card">
-      <img src="09-bureau-lumineux.jpg" alt="Bureau">
+      <img src="07-methode-rencontre.jpg" alt="">
       <div class="card-info">
-        <span class="section-tag">CONTACT / ESS</span>
-        <h3>09 - Espace de travail</h3>
-        <p>Bureau lumineux, professionnel</p>
+        <span class="tag">ÉTAPE 1</span>
+        <h3>07 - Rencontre initiale</h3>
+        <p>Premier contact, écoute</p>
       </div>
     </div>
     <div class="card">
-      <img src="10-coworking.jpg" alt="Coworking">
+      <img src="08-methode-suivi.jpg" alt="">
       <div class="card-info">
-        <span class="section-tag">ESS / ÉQUIPE</span>
-        <h3>10 - Coworking</h3>
-        <p>Travail collaboratif</p>
+        <span class="tag">ÉTAPE 2</span>
+        <h3>08 - Suivi régulier</h3>
+        <p>Accompagnement continu</p>
       </div>
     </div>
     <div class="card">
-      <img src="11-reunion-equipe.jpg" alt="Réunion">
+      <img src="09-methode-avenir.jpg" alt="">
       <div class="card-info">
-        <span class="section-tag">ABOUT / ÉQUIPE</span>
-        <h3>11 - Réunion d'équipe</h3>
-        <p>Collaboration, planification</p>
+        <span class="tag">ÉTAPE 3</span>
+        <h3>09 - Projet d'avenir</h3>
+        <p>Autonomie, insertion</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>🎯 5 AXES d'intervention</h2>
+  <p style="color:#888;font-size:11px;margin-bottom:12px;">Bio, Psy, Social, Pro, Admin</p>
+  <div class="grid">
+    <div class="card">
+      <img src="10-axe-sport.jpg" alt="">
+      <div class="card-info">
+        <span class="tag">AXE BIO</span>
+        <h3>10 - Sport / Santé</h3>
+        <p>Activité physique, bien-être</p>
       </div>
     </div>
     <div class="card">
-      <img src="12-mains-solidarite.jpg" alt="Solidarité">
+      <img src="11-axe-ecoute-psy.jpg" alt="">
       <div class="card-info">
-        <span class="section-tag">ESS / VALEURS</span>
-        <h3>12 - Mains solidarité</h3>
-        <p>Entraide, connexion humaine</p>
+        <span class="tag">AXE PSY</span>
+        <h3>11 - Écoute / Soutien</h3>
+        <p>Accompagnement psychologique</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="12-axe-social-groupe.jpg" alt="">
+      <div class="card-info">
+        <span class="tag">AXE SOCIAL</span>
+        <h3>12 - Lien social</h3>
+        <p>Intégration, pairs</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>✨ SYMBOLIQUE / Parcours</h2>
+  <p style="color:#888;font-size:11px;margin-bottom:12px;">Chemin, autonomie, avenir</p>
+  <div class="grid">
+    <div class="card">
+      <img src="13-symbole-chemin.jpg" alt="">
+      <div class="card-info">
+        <span class="tag">HISTOIRE</span>
+        <h3>13 - Chemin</h3>
+        <p>Parcours de vie</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="14-symbole-liberte.jpg" alt="">
+      <div class="card-info">
+        <span class="tag">ESS</span>
+        <h3>14 - Liberté</h3>
+        <p>Autonomie retrouvée</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="15-symbole-main-ciel.jpg" alt="">
+      <div class="card-info">
+        <span class="tag">CONTACT</span>
+        <h3>15 - Main vers le ciel</h3>
+        <p>Espoir, réussite</p>
       </div>
     </div>
   </div>
   
-  <div class="note">
-    <strong>💬 Dis-moi :</strong><br><br>
-    • Lesquelles tu veux garder ?<br>
-    • Pour quelle section ?<br>
-    • Tu veux d'autres styles ?
-  </div>
+  <p class="note">Dis-moi lesquelles tu gardes et je les intègre au site</p>
 </body>
 </html>
