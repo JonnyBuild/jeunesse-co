@@ -135,8 +135,9 @@ import Icon from './Icon.astro';
         color: var(--color-text-muted);
         line-height: 1.6;
         margin-bottom: 24px;
+        text-align: center;
       }
-
+      
       .link-large {
         display: block;
         font-size: 18px;
@@ -151,6 +152,8 @@ import Icon from './Icon.astro';
       }
 
       .link-arrow {
+        display: block;
+        text-align: center;
         font-size: 14px;
         font-weight: 700;
         color: var(--color-primary);
@@ -158,6 +161,8 @@ import Icon from './Icon.astro';
         border-bottom: 1px solid var(--color-border);
         padding-bottom: 2px;
         transition: all 0.3s ease;
+        width: fit-content;
+        margin: 0 auto;
 
         &:hover {
           border-color: var(--color-primary);
