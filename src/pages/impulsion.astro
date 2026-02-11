@@ -249,7 +249,7 @@ const data = {
         </div>
         <div class="cta-action">
           <p><strong>Inscriptions ouvertes</strong> pour les partenaires institutionnels, services sociaux, écoles et familles.</p>
-          <a href={`${base}/#contact`} class="cta-link">
+          <a href={`${base}#contact`} class="cta-link">
             S'inscrire au programme
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -591,7 +591,7 @@ const data = {
             aria-label={`Voir le profil de ${intervenant.name}`}
           >
             <div class="intervenant-photo">
-              <img src={`${base}/assets/intervenants/${intervenant.photo}`} alt={intervenant.name} />
+              <img src={`${base}assets/intervenants/${intervenant.photo}`} alt={intervenant.name} />
               <div class="photo-overlay">
                 <span>Voir le profil</span>
               </div>
@@ -649,7 +649,7 @@ const data = {
         modalRole.textContent = intervenant.role;
         modalJob.textContent = intervenant.job;
         modalBio.innerHTML = intervenant.bio.split('\n\n').map(p => `<p>${p}</p>`).join('');
-        modalPhoto.src = `${base}/assets/intervenants/${intervenant.photo}`;
+        modalPhoto.src = `${base}assets/intervenants/${intervenant.photo}`;
         modalPhoto.alt = intervenant.name;
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');

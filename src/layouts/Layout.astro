@@ -30,7 +30,7 @@ const base = import.meta.env.BASE_URL;
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href={`/assets/Favicon-32.png`} />
+		<link rel="icon" type="image/png" href={`${base}assets/Favicon-32.png`} />
 		<meta name="generator" content={Astro.generator} />
 		{heroImage && <link rel="preload" as="image" href={heroImage.src} type="image/webp" fetchpriority="high" />}
 		<title>{title}</title>
