@@ -3,36 +3,117 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photos V4 - Jeunesse & Co</title>
+  <title>Photos V3 - Street/Social - Jeunesse&Co</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: system-ui, sans-serif; background: #000; color: #fff; padding: 20px; }
-    h1 { text-align: center; color: #FFDF5C; margin-bottom: 30px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
-    .card { background: #111; border-radius: 8px; overflow: hidden; }
-    .card img { width: 100%; height: 160px; object-fit: cover; }
-    .card p { padding: 10px; font-size: 12px; color: #888; }
-    .card span { color: #FFDF5C; font-weight: bold; }
+    body { 
+      font-family: system-ui, sans-serif; 
+      background: #111; 
+      color: #fff; 
+      padding: 2rem;
+    }
+    h1 { 
+      text-align: center; 
+      margin-bottom: 0.5rem;
+      color: #FFDF5C;
+    }
+    .subtitle {
+      text-align: center;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .photo {
+      background: #222;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .photo img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .photo p {
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .photo strong {
+      color: #FFDF5C;
+    }
   </style>
 </head>
 <body>
-  <h1>📸 V4 - Style varié</h1>
+  <h1>🎯 V3 — Street / Quartier / Social</h1>
+  <p class="subtitle">Moins corporate, plus authentique</p>
   <div class="grid">
-    <div class="card"><img src="01-jeunes-urbain.jpg"><p><span>01</span> Jeunes urbain</p></div>
-    <div class="card"><img src="02-etudiants-discussion.jpg"><p><span>02</span> Étudiants discussion</p></div>
-    <div class="card"><img src="03-groupe-travail.jpg"><p><span>03</span> Groupe travail</p></div>
-    <div class="card"><img src="04-main-aide.jpg"><p><span>04</span> Main aide</p></div>
-    <div class="card"><img src="05-silhouette-fenetre.jpg"><p><span>05</span> Silhouette fenêtre</p></div>
-    <div class="card"><img src="06-portrait-profil.jpg"><p><span>06</span> Portrait profil</p></div>
-    <div class="card"><img src="07-architecture-moderne.jpg"><p><span>07</span> Architecture moderne</p></div>
-    <div class="card"><img src="08-rue-ville.jpg"><p><span>08</span> Rue ville</p></div>
-    <div class="card"><img src="09-ville-nuit.jpg"><p><span>09</span> Ville nuit</p></div>
-    <div class="card"><img src="10-sport-basket.jpg"><p><span>10</span> Sport basket</p></div>
-    <div class="card"><img src="11-sport-course.jpg"><p><span>11</span> Sport course</p></div>
-    <div class="card"><img src="12-fitness.jpg"><p><span>12</span> Fitness</p></div>
-    <div class="card"><img src="13-poignee-main.jpg"><p><span>13</span> Poignée main</p></div>
-    <div class="card"><img src="14-reunion-table.jpg"><p><span>14</span> Réunion table</p></div>
-    <div class="card"><img src="15-open-space.jpg"><p><span>15</span> Open space</p></div>
+    <div class="photo">
+      <img src="01-groupe-quartier.jpg" alt="">
+      <p><strong>01</strong> — Groupe quartier</p>
+    </div>
+    <div class="photo">
+      <img src="02-jeunes-assis-discussion.jpg" alt="">
+      <p><strong>02</strong> — Jeunes assis, discussion</p>
+    </div>
+    <div class="photo">
+      <img src="03-amis-moment.jpg" alt="">
+      <p><strong>03</strong> — Amis, moment</p>
+    </div>
+    <div class="photo">
+      <img src="04-discussion-informelle.jpg" alt="">
+      <p><strong>04</strong> — Discussion informelle</p>
+    </div>
+    <div class="photo">
+      <img src="05-jeune-urbain.jpg" alt="">
+      <p><strong>05</strong> — Jeune urbain</p>
+    </div>
+    <div class="photo">
+      <img src="06-accompagnement-social.jpg" alt="">
+      <p><strong>06</strong> — Accompagnement social</p>
+    </div>
+    <div class="photo">
+      <img src="07-repas-convivial.jpg" alt="">
+      <p><strong>07</strong> — Repas convivial</p>
+    </div>
+    <div class="photo">
+      <img src="08-groupe-projet.jpg" alt="">
+      <p><strong>08</strong> — Groupe projet</p>
+    </div>
+    <div class="photo">
+      <img src="09-jeune-homme-street.jpg" alt="">
+      <p><strong>09</strong> — Jeune homme street</p>
+    </div>
+    <div class="photo">
+      <img src="10-portrait-jeune.jpg" alt="">
+      <p><strong>10</strong> — Portrait jeune</p>
+    </div>
+    <div class="photo">
+      <img src="11-atelier-groupe.jpg" alt="">
+      <p><strong>11</strong> — Atelier groupe</p>
+    </div>
+    <div class="photo">
+      <img src="12-discussion-dehors.jpg" alt="">
+      <p><strong>12</strong> — Discussion dehors</p>
+    </div>
+    <div class="photo">
+      <img src="13-jeune-pro-confiant.jpg" alt="">
+      <p><strong>13</strong> — Jeune pro confiant</p>
+    </div>
+    <div class="photo">
+      <img src="14-espace-travail.jpg" alt="">
+      <p><strong>14</strong> — Espace de travail</p>
+    </div>
+    <div class="photo">
+      <img src="15-jeune-femme-regard.jpg" alt="">
+      <p><strong>15</strong> — Jeune femme, regard</p>
+    </div>
   </div>
 </body>
 </html>
