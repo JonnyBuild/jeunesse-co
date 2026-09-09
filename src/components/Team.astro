@@ -40,18 +40,22 @@ Il exerce par ailleurs la fonction de directeur adjoint d'une structure éducati
 Sa posture professionnelle repose sur une approche centrée sur les compétences des jeunes : partir de ce qu'ils savent déjà faire, valoriser leurs ressources et les accompagner dans l'acquisition de nouvelles compétences. Il inscrit son intervention dans une lecture globale des situations, tenant compte du contexte de vie, de l'environnement familial et social, et mobilisant une approche bio-psycho-sociale afin de proposer des accompagnements ajustés, cohérents et porteurs de sens.`
   },
   {
-    name: "Olivier Béroud",
-    role: "Directeur Co-Fondateur",
-    initials: "OB",
-    bio: `Olivier Béroud bénéficie d'une dizaine d'années d'expérience dans le champ du travail social. Issu du travail social hors murs, il développe une pratique ancrée dans la libre adhésion et les approches centrées sur le développement du pouvoir d'agir.
-
-Il a travaillé principalement dans les quartiers populaires auprès de jeunes de 12 à 25 ans, tout en intervenant également dans d'autres contextes du travail social.
-
-Son parcours inclut par ailleurs des expériences managériales antérieures dans différents domaines professionnels, qui ont contribué à nourrir une approche transversale de l'encadrement et du pilotage.
-
-En parallèle de son engagement au sein de Jeunesse & Co, il exerce des fonctions de responsable d'équipe, au sein desquelles il encadre des équipes pluridisciplinaires.
-
-Cofondateur et membre de la direction de Jeunesse & Co, il met cette double expertise, éducative et managériale, au service du pilotage et du développement de la structure.`
+    name: "Julien Indanda",
+    role: "Éducateur Social",
+    initials: "JI",
+    bio: ""
+  },
+  {
+    name: "Alexandre Bicho",
+    role: "Responsable pédagogique",
+    initials: "AB",
+    bio: ""
+  },
+  {
+    name: "Luca Ciuclea",
+    role: "Responsable Pédagogique",
+    initials: "LC",
+    bio: ""
   },
   {
     name: "Anthony Roulet",
@@ -108,21 +112,21 @@ Cofondateur et codirecteur de Jeunesse & Co, il s'investit pleinement dans le d�
           <article
             class="team__member reveal"
             style={`--delay: ${index * 0.1}s`}
-            data-member-index={index}
-            role="button"
-            tabindex="0"
-            aria-label={`Voir le profil de ${member.name}`}
+            data-member-index={member.bio ? index : undefined}
+            role={member.bio ? "button" : undefined}
+            tabindex={member.bio ? "0" : undefined}
+            aria-label={member.bio ? `Voir le profil de ${member.name}` : undefined}
           >
             <div class="team__member-dot"></div>
             <div class="team__member-content">
               <h3>{member.name}</h3>
               <span class="team__member-role">{member.role}</span>
             </div>
-            <div class="team__member-arrow">
+            {member.bio && <div class="team__member-arrow">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </div>
+            </div>}
           </article>
         ))}
 
@@ -167,7 +171,7 @@ Cofondateur et codirecteur de Jeunesse & Co, il s'investit pleinement dans le d�
     const modalInitials = document.getElementById('modalInitials');
     const closeBtn = modal.querySelector('.team-modal__close');
     const backdrop = modal.querySelector('.team-modal__backdrop');
-    const members = document.querySelectorAll('.team__member');
+    const members = document.querySelectorAll('.team__member[data-member-index]');
     let activeMember = null;
 
     function openModal(index, trigger) {
