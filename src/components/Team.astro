@@ -65,13 +65,19 @@ Cofondateur et codirecteur de Jeunesse & Co, il s'investit pleinement dans le d�
 
 Au sein de Vacances Nouvelles, il a exercé durant plus de vingt ans différentes fonctions allant de l’animation à la responsabilité et à la supervision d’équipes de camps et de centres aérés. Il y a également conçu et animé de nombreuses journées de formation autour de thématiques telles que l’accompagnement des jeunes à besoins particuliers, l’éthique de consommation ou encore la transmission et les différentes manières d’apprendre à enseigner.
 
-Son parcours s’est enrichi à travers différentes formations et expériences complémentaires. Dans le cadre de Jeunesse + Sport, il s’est notamment formé à l’enseignement du snowboard, jusqu’au niveau J+S 3, dans les domaines allstyle et freestyle. Avec les CEMEA, il a participé à l’animation et à la construction de parcours de formation destinés aux responsables de camps de vacances, ainsi qu’à la mise en place d’ateliers pour les moniteur·ices. Il s’est également engagé au sein de la Charte de qualité pour les organismes de vacances, dont il a assuré la présidence, contribuant ainsi aux réflexions autour de la qualité de l’encadrement, de la formation et des pratiques dans les séjours destinés aux enfants et aux jeunes.
+Son parcours s’est enrichi à travers différentes formations et expériences complémentaires. Dans le cadre de Jeunesse + Sport, il s’est notamment formé à l’enseignement du snowboard, jusqu’au niveau J+S 3, dans les domaines allstyle et freestyle.
+
+Avec les CEMEA, il a participé à l’animation et à la construction de parcours de formation destinés aux responsables de camps de vacances, ainsi qu’à la mise en place d’ateliers pour les moniteur·ices.
+
+Il s’est également engagé au sein de la Charte de qualité pour les organismes de vacances, dont il a assuré la présidence, contribuant ainsi aux réflexions autour de la qualité de l’encadrement, de la formation et des pratiques dans les séjours destinés aux enfants et aux jeunes.
 
 Après de nombreuses années de pratique professionnelle, Alexandre a souhaité compléter cette expérience par un Bachelor HES en travail social, réalisé en emploi entre 2019 et 2023. Il travaille aujourd’hui comme animateur socioculturel avec mandat de responsable d'équipe au Jardin d’Aventures de Plan-les-Ouates.
 
 Également praticien formateur, il accompagne des étudiant·es de la HETS dans leur formation pratique, notamment au sein de Vacances Nouvelles et de Jeunesse & Co. Cette fonction s’inscrit dans la continuité de son intérêt pour la transmission, la formation et l’accompagnement des professionnel·les en devenir.
 
-Depuis 2024, il exerce également la fonction de juge assesseur LAVI. Cette expérience lui permet d’affiner sa compréhension du vécu des victimes, des conséquences que peuvent avoir certains actes et des enjeux liés à leur reconnaissance. Elle donne également davantage de profondeur à ses échanges avec les jeunes lorsque ceux-ci le questionnent ou lui partagent des situations vécues, en lui permettant de mieux mettre en perspective le vécu de chacun et les conséquences que certaines situations peuvent avoir pour les personnes concernées.
+Depuis 2024, il exerce également la fonction de juge assesseur LAVI. Cette expérience lui permet d’affiner sa compréhension du vécu des victimes, des conséquences que peuvent avoir certains actes et des enjeux liés à leur reconnaissance.
+
+Elle donne également davantage de profondeur à ses échanges avec les jeunes lorsque ceux-ci le questionnent ou lui partagent des situations vécues, en lui permettant de mieux mettre en perspective le vécu de chacun et les conséquences que certaines situations peuvent avoir pour les personnes concernées.
 
 Au sein de Jeunesse & Co, Alexandre met ces différentes expériences au service d’un accompagnement individualisé, construit avec le jeune. Son approche repose sur la création du lien, le travail en réseau, la mise en mouvement et la définition d’objectifs concrets et accessibles, en s’appuyant autant que possible sur les ressources, les compétences et les expériences de chacun.`
   },
@@ -177,7 +183,7 @@ Son parcours l’a ainsi amené à développer une approche où l’éducatif ne
           </div>
         </div>
         <div class="team-modal__body">
-          <p id="modalBio"></p>
+          <div id="modalBio"></div>
         </div>
       </div>
     </div>
@@ -201,8 +207,14 @@ Son parcours l’a ainsi amené à développer une approche où l’éducatif ne
       activeMember = trigger;
       modalName.textContent = member.name;
       modalRole.textContent = member.role;
-      modalBio.innerHTML = member.bio.split('\n\n').map(p => `<p>${p}</p>`).join('');
+      const paragraphs = member.bio.trim().split(/\n\s*\n/).map((text) => {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = text.trim();
+        return paragraph;
+      });
+      modalBio.replaceChildren(...paragraphs);
       modalInitials.textContent = member.initials;
+      modal.querySelector('.team-modal__content').scrollTop = 0;
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -471,6 +483,10 @@ Son parcours l’a ainsi amené à développer une approche où l’éducatif ne
     visibility: hidden;
     transition: all 0.4s var(--ease-out);
 
+    @media (max-width: 768px) {
+      padding: 16px;
+    }
+
     &.active {
       opacity: 1;
       visibility: visible;
@@ -491,7 +507,7 @@ Son parcours l’a ainsi amené à développer une approche où l’éducatif ne
     &__container {
       position: relative;
       width: 100%;
-      max-width: 680px;
+      max-width: 736px;
       max-height: 85vh;
       background: var(--color-primary);
       border-radius: 24px;
@@ -507,15 +523,12 @@ Son parcours l’a ainsi amené à développer une approche où l’éducatif ne
       padding: 48px;
       overflow-y: auto;
       max-height: 85vh;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 
       @media (max-width: 768px) {
-        padding: 32px 24px;
+        padding: 64px 24px 32px;
       }
     }
 
@@ -557,12 +570,14 @@ Son parcours l’a ainsi amené à développer une approche où l’éducatif ne
       gap: 24px;
       margin-bottom: 32px;
       padding-bottom: 32px;
+      padding-right: 48px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 
       @media (max-width: 768px) {
         flex-direction: column;
         text-align: center;
         gap: 16px;
+        padding-right: 0;
       }
     }
 
@@ -600,42 +615,40 @@ Son parcours l’a ainsi amené à développer une approche où l’éducatif ne
       span {
         font-size: var(--fs-base);
         font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
+        line-height: 1.5;
+        display: block;
         color: #ffdf5c;
       }
     }
 
     &__body {
+      max-width: 60ch;
+      margin-inline: auto;
       color: #fff;
 
-      p, span, div {
+      :global(#modalBio > p) {
         font-size: var(--fs-base);
         line-height: 1.8;
-        color: #fff;
-        margin: 0 0 20px 0;
-        opacity: 1;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+        text-align: left;
+        text-wrap: pretty;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
 
-        &:last-child {
-          margin-bottom: 0;
-        }
+      :global(#modalBio > p + p) {
+        margin-top: 24px;
+      }
+
+      :global(#modalBio > p:first-child) {
+        font-size: var(--fs-md);
+        font-weight: 500;
+        line-height: 1.6;
+        color: #fff;
+        margin-bottom: 32px;
       }
     }
   }
 
-</style>
-
-<style is:global>
-  .team-modal__body p,
-  .team-modal__body #modalBio p,
-  #modalBio p {
-    color: #ffffff !important;
-    font-size: var(--fs-base) !important;
-    line-height: 1.8 !important;
-    margin: 0 0 20px 0 !important;
-  }
-
-  #modalBio p:last-child {
-    margin-bottom: 0 !important;
-  }
 </style>
